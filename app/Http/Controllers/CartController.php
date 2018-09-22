@@ -97,7 +97,14 @@ class CartController extends Controller
         $total = 0;
         foreach($cart as $item)
         {
-            $total += $item->price_pro * $item->quantity;
+            foreach ($opt as $data)
+            {
+                if ($item->id_product == $data['id_product'])
+                {
+                    $sizexqty = $data['quantity'] * count($data['size']);
+                    $total +=  $item->price_pro * $sizexqty;
+                }
+            }
         }
         return $total;
     }

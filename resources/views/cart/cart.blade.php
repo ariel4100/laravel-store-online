@@ -13,14 +13,14 @@
                             <th>imagen</th>
                             <th>producto</th>
                             <th>variantes</th>
-                            <th>total cantidad</th>
-                            <th>total</th>
+                            <th>total precio</th>
+                            <th>eliminar fila</th>
                         </tr>
                         </thead>
                         <tbody>
-            <d>
+                        <pre>
 
-                            </d>
+                        </pre>
                         <hr>
                         @foreach($cart as $item)
                             <tr>
@@ -35,6 +35,7 @@
                                             <th>Color</th>
                                             <th>Cantidad</th>
                                             <th>precio</th>
+                                            <th>sacar fila</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -55,7 +56,10 @@
                                                         {{$data['quantity'] }}
                                                     </td>
                                                     <td>
-                                                        {{$item['price_pro'] * $data['quantity'] }}$
+                                                        {{$item['price_pro'] * ( $data['quantity'] * count($data['size'])) }}$
+                                                    </td>
+                                                    <td>
+                                                        <a href="" class="btn btn-sm btn-danger">x</a>
                                                     </td>
                                                 </tr>
                                             @endif
@@ -63,9 +67,11 @@
                                         </tbody>
                                     </table>
                                 </td>
-                                <td></td>
                                 <td>
-                                    <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
+
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-danger btn-sm">x</button>
                                 </td>
                             </tr>
                         @endforeach
@@ -73,7 +79,7 @@
                     </table>
                     <h3>
                         <div class="alert alert-warning">
-                            Total: $
+                            Total: $ {{ $total }}
                         </div>
                     </h3>
                     <div class="my-2">
