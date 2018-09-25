@@ -30,8 +30,11 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
-            aca van a estar las estadisticas
+        <div class="col-md-6">
+            <canvas id="myChart" style="max-width: 500px;"></canvas>
+        </div>
+        <div class="col-md-6">
+            <canvas id="pieChart"></canvas>
         </div>
     </div>
 </div>

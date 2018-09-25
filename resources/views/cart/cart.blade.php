@@ -13,7 +13,6 @@
                             <th>imagen</th>
                             <th>producto</th>
                             <th>variantes</th>
-                            <th>total precio</th>
                             <th>eliminar fila</th>
                         </tr>
                         </thead>
@@ -42,33 +41,30 @@
                                         @foreach($option as $data)
                                             @if($item['id_product'] == $data['id_product'])
                                                 <tr>
-                                                    <td>
+                                                    <td class="text-center">
                                                         @foreach($data['size'] as $d)
-                                                            {{ $d }}
+                                                            {{ $d }}<br>
                                                         @endforeach
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         @foreach($data['color'] as $d)
-                                                            {{ $d }}
+                                                            {{ $d }}<br>
                                                         @endforeach
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         {{$data['quantity'] }}
                                                     </td>
                                                     <td>
                                                         {{$item['price_pro'] * ( $data['quantity'] * count($data['size'])) }}$
                                                     </td>
                                                     <td>
-                                                        <a href="" class="btn btn-sm btn-danger">x</a>
+                                                            <a href="{{ route('cart-destroy',$item->id_product) }}" class="btn btn-sm btn-danger">x</a>
                                                     </td>
                                                 </tr>
                                             @endif
                                         @endforeach
                                         </tbody>
                                     </table>
-                                </td>
-                                <td>
-
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-danger btn-sm">x</button>

@@ -19,7 +19,7 @@ Route::get('/cart', 'CartController@index')->name('cart');
 Route::get('/carrito/detalle-pedido','CartController@orderDetail')->name('cart.order-detail');
 Route::post('carrito/agregar/producto','CartController@add')->name('cart-add');
 Route::post('carrito/update/{id}','CartController@update')->name('cart-update');
-Route::get('carrito/borrar/{id}','CartController@destroy')->name('cart-clear');
+Route::get('carrito/borrar/{id}','CartController@destroy')->name('cart-destroy');
 Route::resource('/contacto', 'ContactController');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::middleware('auth')->group(function (){

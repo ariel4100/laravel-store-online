@@ -28,33 +28,7 @@ class CartController extends Controller
 
         return view('cart.cart', compact('cart','option','total'));
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function add(Request $request)
     {
         $producto = Product::findOrFail($request->id_product);
@@ -135,8 +109,10 @@ class CartController extends Controller
     {
         $product = Product::findOrFail($id);
         $cart = Session::get('cart');
-        unset($cart[$product->id]);
+        $opt = Session::get('option');
+        unset($cart[$product->id_product], $opt);
         Session::put('cart',$cart);
+        Session::put('option',isset($opt));
         return redirect()->route('cart');
     }
 
