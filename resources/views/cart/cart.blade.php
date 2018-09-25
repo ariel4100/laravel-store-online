@@ -58,7 +58,7 @@
                                                         {{$item['price_pro'] * ( $data['quantity'] * count($data['size'])) }}$
                                                     </td>
                                                     <td>
-                                                            <a href="{{ route('cart-destroy',$item->id_product) }}" class="btn btn-sm btn-danger">x</a>
+
                                                     </td>
                                                 </tr>
                                             @endif
@@ -67,7 +67,7 @@
                                     </table>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-danger btn-sm">x</button>
+                                    <a href="{{ route('cart-destroy',$item->id_product) }}" class="btn btn-sm btn-danger">x</a>
                                 </td>
                             </tr>
                         @endforeach

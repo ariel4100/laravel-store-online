@@ -110,9 +110,17 @@ class CartController extends Controller
         $product = Product::findOrFail($id);
         $cart = Session::get('cart');
         $opt = Session::get('option');
-        unset($cart[$product->id_product], $opt);
+        foreach ($opt as $key=>$item)
+        {
+            if ($product->id_product == $item['id_product'])
+            {
+                unset($opt[$key]);
+                //dd($opt);
+            }
+        }
+        unset($cart[$product->id_product]);
         Session::put('cart',$cart);
-        Session::put('option',isset($opt));
+        Session::put('option',$opt);
         return redirect()->route('cart');
     }
 
