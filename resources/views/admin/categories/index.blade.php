@@ -3,6 +3,7 @@
 @section('content')
     <div class="container">
         <a href="{{ route('categorias.create') }}" class="btn btn-success">Nueva Categoria</a>
+        <a href="{{ route('export_category') }}" class="btn btn-success">excel</a>
         <div class="row my-4">
             @foreach($allCat as $item)
             <div class="col-md-4">

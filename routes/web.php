@@ -33,4 +33,11 @@ Route::middleware('auth')->group(function (){
     Route::delete('/variantes/talle/delete/{id}', 'Admin\SizeController@destroy')->name('size-delete');
     Route::resource('/categorias', 'Admin\CategoryController');
     Route::resource('/usuarios', 'Admin\UserController');
+    //----EXPORT TO EXCEL-----
+    Route::get('/user-excel', 'Admin\ExportController@user')->name('export_user');
+    Route::get('/products-excel', 'Admin\ExportController@product')->name('export_product');
+    Route::get('/categories-excel', 'Admin\ExportController@category')->name('export_category');
+    Route::get('/color-excel', 'Admin\ExportController@color')->name('export_color');
+    Route::get('/size-excel', 'Admin\ExportController@size')->name('export_size');
+
 });

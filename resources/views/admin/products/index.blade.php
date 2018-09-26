@@ -16,6 +16,7 @@
         <div class="row">
             <div class="col-md-12">
                 <a href="{{ route('productos.create') }}" class="btn btn-success">Nuevo Producto</a>
+                <a href="{{ route('export_product') }}" class="btn btn-success">excel</a>
                 <table class="table">
                     <thead class="black white-text">
                     <tr>

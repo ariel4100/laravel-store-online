@@ -16,6 +16,7 @@
         <div class="row">
             <div class="col-md-12">
                 <a href="{{ route('usuarios.create') }}" class="btn btn-success">Nuevo usuario</a>
+                <a href="{{ route('export_user') }}" class="btn btn-success">excel</a>
                 <table class="table">
                     <thead class="black white-text">
                     <tr>

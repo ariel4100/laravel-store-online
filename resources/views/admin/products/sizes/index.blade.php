@@ -4,6 +4,7 @@
     <div class="container">
         <div class="row my-4">
             <div class="col-md-4 mt-2">
+                <a href="{{ route('export_size') }}" class="btn btn-success">excel</a>
                 <form action="{{ route('size-create') }}" method="POST" class="border border-dark p-2">
                     @method('POST')
                     @csrf

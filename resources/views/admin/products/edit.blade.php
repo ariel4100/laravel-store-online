@@ -17,7 +17,7 @@
                         <label>Categoria</label>
                         <select class="browser-default custom-select" name="category">
                             @foreach($allCat as $item)
-                                <option {{$item->id_product == $pro->category_id_pro ? 'selected' : ''}} value="{{$item->id_product}}">{{$item->name_cat}}</option>
+                                <option {{$item->id_category == $pro->category_id_pro ? 'selected' : ''}} value="{{$item->id_category}}">{{$item->name_cat}}</option>
                             @endforeach
                         </select>
                     </div>

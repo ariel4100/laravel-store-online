@@ -146,7 +146,7 @@ class ProductController extends Controller
         }
         $pro->name_pro = $request->name_pro;
         $pro->description_pro = $request->name_pro;
-        $pro->category_id = $request->category;
+        $pro->category_id_pro = $request->category;
         $pro->price_pro = $request->price_pro;
         $pro->quantity_pro = $request->quantity_pro;
         $pro->image_pro = $imagename;
