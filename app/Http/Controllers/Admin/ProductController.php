@@ -22,10 +22,17 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $pro = Product::all();
+        $name = $request->get('name');
+        $pro = Product::orderBy('id_product','DESC')
+        ->where('name_pro','LIKE',"%$name%")->paginate(5);
         return view('admin.products.index',compact('pro'));
+    }
+
+    public function filter(Request $request)
+    {
+
     }
 
     /**

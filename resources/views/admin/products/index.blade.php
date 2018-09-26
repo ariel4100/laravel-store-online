@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <div class="row my-4">
+        <div class="row">
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
@@ -11,6 +11,20 @@
                         <p>100</p>
                     </div>
                 </div>
+            </div>
+            <div class="col-md-8">
+                <form action="{{ route('product_filter') }}" method="GET">
+                    <div class="form-group">
+                        <input type="text" name="name" class="form-control" placeholder="Buscar por Nombre">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="category" class="form-control" placeholder="Buscar por Categoria">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="status" class="form-control" placeholder="Buscar por Estado">
+                    </div>
+                    <button type="submit" class="btn btn-success">Buscar</button>
+                </form>
             </div>
         </div>
         <div class="row">
@@ -57,6 +71,7 @@
                     @endforeach
                     </tbody>
                 </table>
+                {{ $pro->render() }}
             </div>
         </div>
     </div>

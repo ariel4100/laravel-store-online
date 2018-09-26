@@ -1,23 +1,84 @@
-<div class="row">
-    <div class="col-md-12">
-        <a href="{{ route('dashboard.index') }}" class="nav-link">Dashboard</a>
+<nav class="col-md-2 d-none d-md-block bg-dark sidebar">
+    <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="{{ route('dashboard.index') }}">
+                    <span data-feather="home"></span>
+                    Dashboard <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <span data-feather="file"></span>
+                    Orders
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('productos.index') }}">
+                    <span data-feather="shopping-cart"></span>
+                    Productos
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('color') }}">
+                    <span data-feather="shopping-cart"></span>
+                    colores
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('size') }}">
+                    <span data-feather="shopping-cart"></span>
+                    Talles
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('usuarios.index') }}">
+                    <span data-feather="users"></span>
+                    Clientes
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('categorias.index') }}">
+                    <span data-feather="bar-chart-2"></span>
+                    Categorias
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <span data-feather="layers"></span>
+                    Integrations
+                </a>
+            </li>
+        </ul>
+
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Saved reports</span>
+        </h6>
+        <ul class="nav flex-column mb-2">
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <span data-feather="file-text"></span>
+                    Current month
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <span data-feather="file-text"></span>
+                    Last quarter
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <span data-feather="file-text"></span>
+                    Social engagement
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <span data-feather="file-text"></span>
+                    Year-end sale
+                </a>
+            </li>
+        </ul>
     </div>
-    <div class="col-md-12">
-        <a href="{{ route('productos.index') }}" class="nav-link">Productos</a>
-    </div>
-    <div class="col-md-12">
-        <a href="{{ route('color') }}" class="nav-link">Colores</a>
-    </div>
-    <div class="col-md-12">
-        <a href="{{ route('size') }}" class="nav-link">Talles</a>
-    </div>
-    <div class="col-md-12">
-        <a href="{{ route('categorias.index') }}" class="nav-link">Categorias</a>
-    </div>
-    <div class="col-md-12">
-        <a href="{{ route('usuarios.index') }}" class="nav-link">Usuarios</a>
-    </div>
-    <div class="col-md-12">
-        <a href="" class="nav-link">Contactos</a>
-    </div>
-</div>
+</nav>

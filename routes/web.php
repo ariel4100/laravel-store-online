@@ -25,14 +25,18 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::middleware('auth')->group(function (){
     Route::resource('/dashboard', 'Admin\AdminController');
     Route::resource('/productos', 'Admin\ProductController');
+    Route::resource('/categorias', 'Admin\CategoryController');
+    Route::resource('/usuarios', 'Admin\UserController');
     Route::get('/variantes/colores', 'Admin\ColorController@index')->name('color');
     Route::post('/variantes/colores/create', 'Admin\ColorController@store')->name('color-create');
     Route::delete('/variantes/colores/delete/{id}', 'Admin\ColorController@destroy')->name('color-delete');
     Route::get('/variantes/sizes', 'Admin\SizeController@index')->name('size');
     Route::post('/variantes/talle/create', 'Admin\SizeController@store')->name('size-create');
     Route::delete('/variantes/talle/delete/{id}', 'Admin\SizeController@destroy')->name('size-delete');
-    Route::resource('/categorias', 'Admin\CategoryController');
-    Route::resource('/usuarios', 'Admin\UserController');
+    //-----Buscadores------
+    Route::get('/user/{name}', 'Admin\UserController@index')->name('user_filter');
+    Route::get('/filter-product', 'Admin\ProductController@index')->name('product_filter');
+    Route::get('/user/{name}', 'Admin\UserController@index')->name('user_filter');
     //----EXPORT TO EXCEL-----
     Route::get('/user-excel', 'Admin\ExportController@user')->name('export_user');
     Route::get('/products-excel', 'Admin\ExportController@product')->name('export_product');
