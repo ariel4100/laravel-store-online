@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Category;
 use App\Model\Product;
 use App\Model\ProductColor;
 use App\Model\ProductSize;
@@ -14,10 +15,14 @@ class ItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $items = Product::where('status_pro','ACTIVO')->get();
-        return view('item.index',compact('items'));
+        $allCat = Category::all();
+        $category = $request->get('categories');
+        $items = Product::orderBy('id_product','DESC')
+            ->where('status_pro','ACTIVO')
+            ->where('category_id_pro','LIKE',"%$category%")->paginate(5);
+        return view('item.index',compact('items','allCat'));
     }
 
     /**

@@ -1,4 +1,14 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+<!--<div class=" bg-info" style="">
+    <div class="row">
+        <div class="col-md-6">
+            <p class="lead">Whatsapp: 1559350431</p>
+        </div>
+        <div class="col-md-6">
+
+        </div>
+    </div>
+</div>--->
+<nav class="navbar navbar-expand-md navbar-dark elegant-color fixed-top">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
             {{ config('app.name', 'AdminTienda') }}
