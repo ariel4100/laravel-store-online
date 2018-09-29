@@ -8,44 +8,6 @@
             <div class="row">
                 <div class="col-md-6">
                     <img src="{{ asset('uploads/Products/'.$item->image_pro) }}" alt="" class="img-fluid">
-                    <!--Carousel Wrapper-->
-                    <div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails" data-ride="carousel">
-                        <!--Slides-->
-                        <div class="carousel-inner" role="listbox">
-                            <div class="carousel-item active">
-                                <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(88).jpg" alt="First slide">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(121).jpg" alt="Second slide">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(31).jpg" alt="Third slide">
-                            </div>
-                        </div>
-                        <!--/.Slides-->
-                        <!--Controls-->
-                        <a class="carousel-control-prev" href="#carousel-thumb" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carousel-thumb" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                        <!--/.Controls-->
-                        <figure class="row">
-                            <a class="col-md-4" data-target="#carousel-thumb" data-slide-to="2">
-                                <img class="d-block w-100 img-fluid" src="https://mdbootstrap.com/img/Photos/Others/Carousel-thumbs/img%20(31).jpg">
-                            </a>
-                            <a class="col-md-4" data-target="#carousel-thumb" data-slide-to="0">
-                                <img class="d-block w-100 img-fluid" src="https://mdbootstrap.com/img/Photos/Others/Carousel-thumbs/img%20(88).jpg">
-                            </a>
-                            <a class="col-md-4" data-target="#carousel-thumb" data-slide-to="1">
-                                <img class="d-block w-100 img-fluid" src="https://mdbootstrap.com/img/Photos/Others/Carousel-thumbs/img%20(121).jpg">
-                            </a>
-                        </figure>
-                    </div>
-                    <!--/.Carousel Wrapper-->
                 </div>
                 <div class="col-md-6">
                     <h2 class="card-title"><strong>{{ $item->name_pro }}</strong></h2>

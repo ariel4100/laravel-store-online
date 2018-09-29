@@ -29,7 +29,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <a href="{{ route('productos.create') }}" class="btn btn-success">Nuevo Producto</a>
+                <a href="{{ route('productos.create') }}" class="btn btn-success">+ Nuevo Producto</a>
                 <a href="{{ route('export_product') }}" class="btn btn-success">excel</a>
                 <table class="table">
                     <thead class="black white-text">
@@ -55,17 +55,22 @@
                         <td>{{$item->quantity_pro}}</td>
                         <td><p class="badge badge-info">{{$item->status_pro}}</p></td>
                         <td>
-                            <a href="{{ route('productos.edit',$item->id_product) }}" class="btn btn-warning btn-sm">Editar</a>
-                            <form id="delete-form-{{ $item->id_product }}" action="{{ route('productos.destroy',$item->id_product) }}" style="display: none;" method="POST">
-                                @csrf
-                                @method('DELETE')
-                            </form>
-                            <button type="button" class="btn btn-danger btn-sm" onclick="if(confirm('Are you sure? You want to delete this?')){
-                                    event.preventDefault();
-                                    document.getElementById('delete-form-{{ $item->id_product }}').submit();
-                                    }else {
-                                    event.preventDefault();
-                                    }">Eliminar</button>
+                            <button type="button" class="btn btn-info dropdown-toggle btn-sm" data-toggle="dropdown">ver opciones</button>
+                            <div class="dropdown-menu">
+                                <a href="{{ route('productos.edit',$item->id_product) }}" class="dropdown-item">Editar</a>
+                                <a href="" class="dropdown-item">Agregar Galeria</a>
+                                <form id="delete-form-{{ $item->id_product }}" action="{{ route('productos.destroy',$item->id_product) }}" style="display: none;" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
+                                <a class="dropdown-item" onclick="if(confirm('Are you sure? You want to delete this?')){
+                                        event.preventDefault();
+                                        document.getElementById('delete-form-{{ $item->id_product }}').submit();
+                                        }else {
+                                        event.preventDefault();
+                                        }">Eliminar</a>
+                            </div>
+
                         </td>
                     </tr>
                     @endforeach

@@ -1,5 +1,7 @@
 @extends('layouts.appAdmin')
+@section('style')
 
+@endsection
 @section('content')
     <div class="container">
         <div class="row">
@@ -52,7 +54,14 @@
                         </div>
                         <div class="custom-file">
                             <input type="file" class="custom-file-input"  name="image_pro" aria-describedby="inputGroupFileAddon01">
-                            <label class="custom-file-label" for="inputGroupFile01">imagen</label>
+                            <label class="custom-file-label" for="inputGroupFile01">imagen-principal</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="ruta" class="col-sm-2 control-label">Imagenes</label>
+
+                        <div class="col-sm-10">
+                            <input id="file-1" type="file" multiple class="file" name="ruta[]" value="Ingrese una Imagen" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -70,4 +79,30 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <script>
+        $("#file-1").fileinput({
+            language: 'es',
+            uploadUrl: 'publicaciones', // you must set a valid URL here else you will get an error
+            uploadAsync: false,
+            initialPreviewFileType: 'image',
+            allowedFileExtensions : ['jpg', 'png','gif'],
+            //overwriteInitial: false,
+            maxFileSize: 1000,
+            //maxFilesNum: 10,
+            maxFileCount: 5,
+            showUpload: false,
+            fileActionSettings:{
+                showUpload: false
+                //showRemove: false
+            },
+            browseOnZoneClick: true
+            //allowedFileTypes: ['image', 'video', 'flash'],
+            /*slugCallback: function(filename) {
+                return filename.replace('(', '_').replace(']', '_');
+            }*/
+        });
+    </script>
+
 @endsection
