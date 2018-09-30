@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container-fluid my-5">
+    <div class="container-fluid my-5 pt-5">
         <!-- Section: Products v.2 -->
         <section class="text-center">
             <!-- Grid row -->
@@ -44,7 +44,7 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <button type="submit" class="btn btn-success mt-4">Agregar a carrito</button>
+                                <button type="submit" class="btn btn-success mt-4">Agregar a carrito <i class="fa fa-cart-plus ml-2" aria-hidden="true"></i></button>
                             </div>
                         </div>
                     </form>

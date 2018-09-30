@@ -24,18 +24,18 @@ class CartController extends Controller
         $cart = Session::get('cart');
         $option = Session::get('option');
 
-        $total = $this->total();
+        $total = 0;
 
         return view('cart.cart', compact('cart','option','total'));
     }
 
     public function add(Request $request)
     {
-        $producto = Product::findOrFail($request->id_product);
+        $product = Product::findOrFail($request->id_product);
         $car = $request->only('size','color','quantity','id_product');
         $cart = Session::get('cart');
         $pro = Session::get('option');
-        $cart[$producto->id_product] = $producto;
+        $cart[$product->id_product] = $product;
         $pro[] = $car;
         Session::put('option',$pro);
         Session::put('cart',$cart);
@@ -64,24 +64,7 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function total()
-    {
-        $opt = Session::get('option');
-        $cart = Session::get('cart');
-        $total = 0;
-        foreach($cart as $item)
-        {
-            foreach ($opt as $data)
-            {
-                if ($item->id_product == $data['id_product'])
-                {
-                    $sizexqty = $data['quantity'] * count($data['size']);
-                    $total +=  $item->price_pro * $sizexqty;
-                }
-            }
-        }
-        return $total;
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -92,9 +75,15 @@ class CartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $producto = Product::find($id);
-        $cart = Session::get('cart');
-        $cart[$producto->id]->quantity = $request->cantidad;
+        $product = Product::findOrFail($id);
+        $cart = Session::get('option');
+        foreach ($cart as $item)
+        {
+            if ($item['id_product'] == $product->id_product)
+            {
+                $item['quantity'] = $request->cantidad;
+            }
+        }
         Session::put('cart',$cart);
         return redirect()->route('cart');
     }

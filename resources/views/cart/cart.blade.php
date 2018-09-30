@@ -25,7 +25,7 @@
                             <tr>
                                 <th scope="row">{{ $item['id_product'] }}</th>
                                 <td><img class="img-responsive img-thumbnail" src="{{ asset('uploads/Products/'.$item['image_pro']) }}" style="height: 100px; width: 100px" alt=""></td>
-                                <td>{{ $item->name_pro }} <br>{{ $item['price_pro'] }} </td>
+                                <td>{{ $item->name_pro }} <br>{{ $item->price_pro }} </td>
                                 <td>
                                     <table class="table table-bordered">
                                         <thead>
@@ -39,7 +39,7 @@
                                         </thead>
                                         <tbody>
                                         @foreach($option as $data)
-                                            @if($item['id_product'] == $data['id_product'])
+                                            @if($item->id_product == $data['id_product'])
                                                 <tr>
                                                     <td class="text-center">
                                                         @foreach($data['size'] as $d)
@@ -51,8 +51,17 @@
                                                             {{ $d }}<br>
                                                         @endforeach
                                                     </td>
-                                                    <td class="text-center">
-                                                        {{$data['quantity'] }}
+                                                    <td style="width: 12rem">
+                                                        <form action="{{ route('cart-update',$item->id_product) }}" method="POST">
+                                                            @csrf
+                                                            <div class="input-group">
+                                                                <input type="number" min="1" name="cantidad" max="150" class="form-control text-center" value="{{$data['quantity']}}">
+                                                                <div class="input-group-append">
+                                                                    <button type="submit" class="btn  btn-outline-primary btn-sm" > <i class="fa fa-refresh"></i></button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+
                                                     </td>
                                                     <td>
                                                         {{$item['price_pro'] * ( $data['quantity'] * count($data['size'])) }}$
@@ -93,4 +102,20 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('script')
+    <script>
+
+        // Update item cart
+        $(".btn-update-item").on('click', function(e){
+            e.preventDefault();
+
+            var id = $(this).data('id');
+            var href = $(this).data('href');
+            var quantity = $("#product_" + id).val();
+
+            window.location.href = href + "/" + quantity;
+        });
+    </script>
 @endsection
