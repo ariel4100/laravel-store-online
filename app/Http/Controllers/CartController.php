@@ -34,10 +34,10 @@ class CartController extends Controller
         $product = Product::findOrFail($request->id_product);
         $car = $request->only('size','color','quantity','id_product');
         $cart = Session::get('cart');
-        $pro = Session::get('option');
+        $opt = Session::get('option');
         $cart[$product->id_product] = $product;
-        $pro[] = $car;
-        Session::put('option',$pro);
+        $opt[] = $car;
+        Session::put('option',$opt);
         Session::put('cart',$cart);
         return redirect()->route('cart');
         /*$product = Product::findOrFail($id);
@@ -76,15 +76,19 @@ class CartController extends Controller
     public function update(Request $request, $id)
     {
         $product = Product::findOrFail($id);
-        $cart = Session::get('option');
-        foreach ($cart as $item)
+        $opt = Session::get('option');
+        foreach ($opt as $key=>$item)
         {
             if ($item['id_product'] == $product->id_product)
             {
                 $item['quantity'] = $request->cantidad;
+                $opt[$key] = $item;
             }
+          
         }
-        Session::put('cart',$cart);
+        Session::put('option',$opt);
+        Session::get('option');
+        //return compact('c');
         return redirect()->route('cart');
     }
 

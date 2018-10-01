@@ -18,7 +18,7 @@
                         </thead>
                         <tbody>
                         <pre>
-
+                           {{ dd($option) }}
                         </pre>
                         <hr>
                         @foreach($cart as $item)
