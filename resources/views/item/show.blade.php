@@ -19,7 +19,7 @@
                             <div class="col-md-3">
                                 <div class="form group">
                                     <label for="talle">Talle</label>
-                                    <select name="size[]" class="form-control select2" multiple="multiple">
+                                    <select name="size" class="form-control">
                                         @foreach($size as $data)
                                             <option value="{{ $data->size->letter == null ? $data->size->number : $data->size->letter }}">{{ $data->size->letter == null ? $data->size->number : $data->size->letter }}</option>
                                         @endforeach
@@ -29,7 +29,7 @@
                             <div class="col-md-3">
                                 <div class="form group">
                                     <label for="talle">Colores</label>
-                                    <select name="color[]" class="form-control select2" multiple="multiple">
+                                    <select name="color" class="form-control">
                                         @foreach($color  as $data)
                                             <option value="{{ $data->color->name_color }}">{{ $data->color->name_color }}</option>
                                         @endforeach
@@ -44,7 +44,7 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <button type="submit" class="btn btn-success mt-4">Agregar a carrito <i class="fa fa-cart-plus ml-2" aria-hidden="true"></i></button>
+                                <button type="submit" class="btn btn-success btn-sm mt-4">Agregar a carrito <i class="fa fa-cart-plus ml-2" aria-hidden="true"></i></button>
                             </div>
                         </div>
                     </form>

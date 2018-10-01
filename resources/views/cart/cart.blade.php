@@ -18,7 +18,7 @@
                         </thead>
                         <tbody>
                         <pre>
-                           {{ dd($option) }}
+
                         </pre>
                         <hr>
                         @foreach($cart as $item)
@@ -42,14 +42,10 @@
                                             @if($item->id_product == $data['id_product'])
                                                 <tr>
                                                     <td class="text-center">
-                                                        @foreach($data['size'] as $d)
-                                                            {{ $d }}<br>
-                                                        @endforeach
+                                                       {{ $data['size'] }}
                                                     </td>
                                                     <td class="text-center">
-                                                        @foreach($data['color'] as $d)
-                                                            {{ $d }}<br>
-                                                        @endforeach
+                                                        {{ $data['color'] }}
                                                     </td>
                                                     <td style="width: 12rem">
                                                         <form action="{{ route('cart-update',$item->id_product) }}" method="POST">
@@ -64,7 +60,7 @@
 
                                                     </td>
                                                     <td>
-                                                        {{$item['price_pro'] * ( $data['quantity'] * count($data['size'])) }}$
+                                                        {{$item['price_pro'] * ( $data['quantity'] * $data['size']) }}$
                                                     </td>
                                                     <td>
 

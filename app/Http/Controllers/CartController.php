@@ -32,20 +32,33 @@ class CartController extends Controller
     public function add(Request $request)
     {
         $product = Product::findOrFail($request->id_product);
-        $car = $request->only('size','color','quantity','id_product');
         $cart = Session::get('cart');
         $opt = Session::get('option');
+        $car = $request->only('size','color','quantity','id_product');
+        if ($opt)
+        {
+            foreach ($opt as $key=>$item)
+            {
+                if ($item['size'] == $request->size && $item['color'] == $request->color && $item['id_product'] == $request->id_product)
+                {
+                    $item['quantity'] += $request->quantity;
+                    $opt[$key] = $item;
+                    Session::put('option',$opt);
+                }else{
+                    $opt[] = $car;
+                    Session::put('option',$opt);
+                }
+            }
+        }else{
+
+            $opt[] = $car;
+            Session::put('option',$opt);
+        }
+
         $cart[$product->id_product] = $product;
-        $opt[] = $car;
-        Session::put('option',$opt);
+
         Session::put('cart',$cart);
         return redirect()->route('cart');
-        /*$product = Product::findOrFail($id);
-        $cart = Session::get('cart');
-        $product->quantity = 1;
-        $cart[$product->id] = $product;
-        Session::put('cart',$cart);
-        return redirect()->route('cart');*/
     }
 
     public function option()
