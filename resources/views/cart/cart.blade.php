@@ -34,7 +34,7 @@
                                             <th>Color</th>
                                             <th>Cantidad</th>
                                             <th>precio</th>
-                                            <th>sacar fila</th>
+
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -62,9 +62,7 @@
                                                     <td>
                                                         {{$item['price_pro'] * ( $data['quantity'] * $data['size']) }}$
                                                     </td>
-                                                    <td>
 
-                                                    </td>
                                                 </tr>
                                             @endif
                                         @endforeach

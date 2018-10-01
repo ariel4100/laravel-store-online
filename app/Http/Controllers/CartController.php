@@ -35,25 +35,25 @@ class CartController extends Controller
         $cart = Session::get('cart');
         $opt = Session::get('option');
         $car = $request->only('size','color','quantity','id_product');
-        if ($opt)
+        if (!$opt)
         {
-            foreach ($opt as $key=>$item)
-            {
-                if ($item['size'] == $request->size && $item['color'] == $request->color && $item['id_product'] == $request->id_product)
-                {
-                    $item['quantity'] += $request->quantity;
-                    $opt[$key] = $item;
-                    Session::put('option',$opt);
-                }else{
-                    $opt[] = $car;
-                    Session::put('option',$opt);
-                }
-            }
-        }else{
-
             $opt[] = $car;
             Session::put('option',$opt);
+            var_dump('sale por aca');
         }
+        foreach ($opt as $key=>$item)
+        {
+            if ($item['size'] == $request->size && $item['color'] == $request->color && $item['id_product'] == $request->id_product)
+            {
+                //$item['quantity'] += $request->quantity;
+                unset($opt[$key]);
+                //$opt[$key] = $item;
+
+            }
+        }
+        $opt[] = $car;
+
+        Session::put('option',$opt);
 
         $cart[$product->id_product] = $product;
 
