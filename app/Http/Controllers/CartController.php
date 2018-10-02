@@ -71,21 +71,7 @@ class CartController extends Controller
         }
         return $total;*/
     }
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
 
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $product = Product::findOrFail($id);
@@ -139,9 +125,24 @@ class CartController extends Controller
     //Detalle del pedido
     public function orderDetail()
     {
+        if(count(Session::get('cart')) <= 0) return redirect()->route('home');
         $cart = Session::get('cart');
+        $option = Session::get('option');
+        $totqty = 0;
+        foreach ($cart as $item)
+        {
+            foreach ($option as $data)
+            {
+                if ($item->id_product == $data['id_product'])
+                {
+                    $totqty += $data['quantity'];
+                }
+            }
+        }
+
+        //$pedido= array_merge($option,$cart);
         $total = $this->total();
-        return view('store.cart.order-detail',compact('cart','total'));
+        return view('cart.order-detail',compact('cart','option','total','totqty'));
     }
     public function saveOrder()
     {

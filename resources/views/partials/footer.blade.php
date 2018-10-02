@@ -11,7 +11,7 @@
             <div class="col-md-4 col-lg-3 mr-auto my-md-4 my-0 mt-4 mb-1">
 
                 <!-- Content -->
-                <h5 class="font-weight-bold text-uppercase mb-4">Footer Content</h5>
+                <h5 class="font-weight-bold text-uppercase mb-4">Creaciones Rocio</h5>
                 <p>Here you can use rows and columns here to organize your footer content.</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit amet numquam iure provident voluptate esse
                     quasi, veritatis totam voluptas nostrum.</p>
@@ -25,27 +25,22 @@
             <div class="col-md-2 col-lg-2 mx-auto my-md-4 my-0 mt-4 mb-1">
 
                 <!-- Links -->
-                <h5 class="font-weight-bold text-uppercase mb-4">About</h5>
+                <h5 class="font-weight-bold text-uppercase mb-4">ACERCA DE</h5>
 
                 <ul class="list-unstyled">
                     <li>
                         <p>
-                            <a href="#!">PROJECTS</a>
+                            <a href="#!">NOSOTROS</a>
                         </p>
                     </li>
                     <li>
                         <p>
-                            <a href="#!">ABOUT US</a>
+                            <a href="#!">PRODUCTOS</a>
                         </p>
                     </li>
                     <li>
                         <p>
-                            <a href="#!">BLOG</a>
-                        </p>
-                    </li>
-                    <li>
-                        <p>
-                            <a href="#!">AWARDS</a>
+                            <a href="#!">CONTACTO</a>
                         </p>
                     </li>
                 </ul>
@@ -59,7 +54,7 @@
             <div class="col-md-4 col-lg-3 mx-auto my-md-4 my-0 mt-4 mb-1">
 
                 <!-- Contact details -->
-                <h5 class="font-weight-bold text-uppercase mb-4">Address</h5>
+                <h5 class="font-weight-bold text-uppercase mb-4">DIRRECION</h5>
 
                 <ul class="list-unstyled">
                     <li>
@@ -89,7 +84,7 @@
             <div class="col-md-2 col-lg-2 text-center mx-auto my-4">
 
                 <!-- Social buttons -->
-                <h5 class="font-weight-bold text-uppercase mb-4">Follow Us</h5>
+                <h5 class="font-weight-bold text-uppercase mb-4">SIGUENOS</h5>
 
                 <!-- Facebook -->
                 <a type="button" class="btn-floating btn-fb">

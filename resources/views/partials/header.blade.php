@@ -8,10 +8,10 @@
         </div>
     </div>
 </div>--->
-<nav class="navbar navbar-expand-md navbar-dark elegant-color fixed-top">
+<nav class="navbar navbar-expand-md navbar-dark light-blue darken-1 fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
-            {{ config('app.name', 'AdminTienda') }}
+        <a class="navbar-brand border rounded-circle p-2" href="{{ url('/') }}">
+            {{ config('app.name', 'CR-Tienda') }}
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
@@ -21,7 +21,6 @@
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
-
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('home') }}">{{ __('Inicio') }}</a>
                 </li>
@@ -29,7 +28,7 @@
                     <a class="nav-link" href="{{ route('item') }}">{{ __('Productos') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('cart') }}"><i class="fas fa-shopping-cart"></i></a>
+                    <a class="nav-link" href="{{ route('cart') }}"><i class="fas fa-shopping-cart"></i>(5)</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('contacto.index') }}">{{ __('Contacto') }}</a>

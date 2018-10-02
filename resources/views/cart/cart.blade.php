@@ -60,7 +60,7 @@
 
                                                     </td>
                                                     <td>
-                                                        {{$item['price_pro'] * ( $data['quantity'] * $data['size']) }}$
+                                                        {{$item['price_pro'] *  $data['quantity'] }}$
                                                     </td>
 
                                                 </tr>
@@ -83,11 +83,11 @@
                     </h3>
                     <div class="my-2">
                         <a href="{{ route('item') }}" class="btn btn-primary btn-lg">seguir comprando</a>
-                        <a href=" " class="btn btn-success btn-lg">finalizar compra</a>
+                        <a href="{{ route('cart-order') }}" class="btn btn-success btn-lg">finalizar compra</a>
                     </div>
                 @else
                     <div class="alert alert-primary text-center">
-                        No hay productos en el carrito :)
+                        No hay productos en el carrito...
                     </div>
                     <div class="my-2">
                         <a href="{{ route('item') }}" class="btn btn-primary btn-lg">seguir comprando</a>

@@ -1,27 +1,46 @@
 @extends('layouts.app')
-
+@section('style')
+    <style>
+        .card:hover {
+            background: #e0e0e0 ;
+            /*border-top: 1px solid #212121;*/
+        }
+    </style>
+@endsection
 @section('content')
     <div class="container-fluid text-dark">
         <!--<div class="row bg-warning text-center  py-4">
             <p class="h1-responsive font-weight-bold mx-auto">Nuestros Best Productos!!!</p>
             <p class="w-responsive mx-auto">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum quisquam eum porro a pariatur veniam.</p>
         </div>--->
-        <div class="row bg-dark py-3 mt-5">
-            <div class="col-md-12">
-                <form action="{{ route('item') }}" method="GET" class="form-inline justify-content-center">
+        <div class="row  mdb-color lighten-2 py-3 mt-5">
+            <div class="col-md-12 mt-3">
+                <form action="{{ route('item') }}" method="GET" class="form-row justify-content-center text-white">
+                    <div class="form-group col-md-2">
+                        <label for="">Nombre</label>
                         <input type="text" class="form-control mr-3">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="">Descripcion</label>
                         <input type="text" class="form-control mr-3">
-                    <select class="browser-default custom-select" name="categories">
-                        @foreach($allCat as $item)
-                            <option value="{{$item->id_category}}">{{$item->name_cat}}</option>
-                        @endforeach
-                    </select>
-                    <button type="submit" class="btn btn-success">Buscar</button>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="">Categoria</label>
+                        <select class="browser-default custom-select" name="categories">
+                            @foreach($allCat as $item)
+                                <option value="{{$item->id_category}}">{{$item->name_cat}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group col-md-2 mt-3">
+                        <button type="submit" class="btn btn-success">Buscar</button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
     <div class="container my-5">
+        <hr class="bg-info">
         <div class="row">
             @foreach($items as $item)
                 <div class="col-md-3 mb-lg-0 mb-4">
