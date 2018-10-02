@@ -78,7 +78,7 @@
                     </table>
                     <h3>
                         <div class="alert alert-warning">
-                            Total: $ {{ $total }}
+                            Total: $ {{ number_format( $total,0,',','.')  }} ARG
                         </div>
                     </h3>
                     <div class="my-2">

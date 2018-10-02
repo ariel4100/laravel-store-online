@@ -23,9 +23,7 @@ class CartController extends Controller
     {
         $cart = Session::get('cart');
         $option = Session::get('option');
-
-        $total = 0;
-
+        $total = $this->total();
         return view('cart.cart', compact('cart','option','total'));
     }
 
@@ -60,16 +58,23 @@ class CartController extends Controller
         Session::put('cart',$cart);
         return redirect()->route('cart');
     }
-
-    public function option()
+    public function total()
     {
-       /* $cart = Session::get('option');
-        $total = array();
+        $opt = Session::get('option');
+        $cart = Session::get('cart');
+        $total = 0;
         foreach($cart as $item)
         {
-            array_push($total , $item['cart']);
+            foreach ($opt as $data)
+            {
+                if ($item->id_product == $data['id_product'])
+                {
+                    //$sizexqty = $data['quantity'] * count($data['size']);
+                    $total +=  $item->price_pro * $data['quantity'];
+                }
+            }
         }
-        return $total;*/
+        return $total;
     }
 
     public function update(Request $request, $id)

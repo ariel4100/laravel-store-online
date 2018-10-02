@@ -38,17 +38,22 @@
             <table class="table table-bordered">
                 <thead class="grey lighten-2">
                 <tr>
+                    <th style="width: 10px">N°Producto</th>
                     <th>Producto</th>
-                    <th style="width:100px;">Cantidad</th>
                     <th style="width:100px;">P.U</th>
-                    <th style="width:100px;">Total</th>
+                    <th style="width:100px;">Detalle del Pedido</th>
+
                 </tr>
                 </thead>
 
                 <tbody>
                 @foreach($cart as $item)
                     <tr>
+                        <td class="text-center">#00{{ $item->id_product }}</td>
                         <td>{{ $item->name_pro }}</td>
+                        <td  class="text-center">
+                            {{ number_format($item->price_pro,2)}}$
+                        </td>
                         <td>
                             <table class="table table-bordered">
                                 <thead>
@@ -56,7 +61,7 @@
                                     <th>Talle</th>
                                     <th>Color</th>
                                     <th>Cantidad</th>
-
+                                    <th>Total</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -69,37 +74,12 @@
                                             <td class="text-center">
                                                 {{ $data['color'] }}
                                             </td>
-                                            <td style="width: 12rem">
+                                            <td class="text-center">
                                                 {{$data['quantity']}}
                                             </td>
-
-
-                                        </tr>
-                                    @endif
-                                @endforeach
-                                </tbody>
-                            </table>
-                        </td>
-                        <td>
-                            {{ $item->price_pro}}
-                        </td>
-                        <td>
-                            <table class="table table-bordered">
-                                <thead>
-                                <tr>
-
-                                    <th>precio</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($option as $data)
-                                    @if($item->id_product == $data['id_product'])
-                                        <tr>
-
                                             <td>
-                                                {{$item['price_pro'] * $data['quantity']  }}$
+                                                {{ number_format($item->price_pro * $data['quantity'],0,',','.') }}$
                                             </td>
-
                                         </tr>
                                     @endif
                                 @endforeach
@@ -117,7 +97,7 @@
 
                 <tr>
                     <td colspan="3" class="text-right"><b>Precio Total: </b></td>
-                    <td class="text-right">$ {{ number_format(11111, 2) }}</td>
+                    <td class="text-right">$ {{ number_format($total,0,',','.') }} (ARG)</td>
                 </tr>
                 </tfoot>
             </table>
