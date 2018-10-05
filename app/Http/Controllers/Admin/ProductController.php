@@ -6,6 +6,7 @@ use App\Model\Category;
 use App\Model\Color;
 use App\Model\Product;
 use App\Model\ProductColor;
+use App\Model\ProductImage;
 use App\Model\ProductSize;
 use App\Model\ProductVariants;
 use App\Model\Size;
@@ -61,7 +62,7 @@ class ProductController extends Controller
         if (isset($image))
         {
             $currentDate = Carbon::now()->toDateString();
-            $imagename = $slug.'-'.$currentDate.'-'. uniqid() .'.'. $image->getClientOriginalExtension();
+            $imagename = $slug.'-'.$currentDate.'-'. uniqid() .'.'. $image->getClientOriginalName();
 
             if (!file_exists('uploads/Products'))
             {
@@ -81,8 +82,10 @@ class ProductController extends Controller
         $pro->image_pro = $imagename;
         $pro->status_pro = $request->status_pro;
         $pro->save();
-        $p = Product::all('id_product'); //buscar el ultimo id del producto
+        //buscar el ultimo id del producto
+        $p = Product::all('id_product');
         $idUltimo = $p->last();
+
         $size = $request->get('size');
         $color = $request->get('color');
         foreach ($size as $item){
@@ -98,6 +101,19 @@ class ProductController extends Controller
                 'product_id' => $idUltimo->id_product,
                 'status' => 'ACTIVO'
             ]);
+        }
+        $files = $request->file('galery');
+        $patch = public_path().'/uploads/Products/'.$idUltimo->id_product.'/'; //Directorio para subir imagenes
+        if($files)
+        {
+            foreach ($files as $key=>$file) {
+                $fileName = $file->getClientOriginalName();
+                ProductImage::create([
+                    'product_id_img' => $idUltimo->id_product,
+                    'pics' => 'uploads/Products/' . $idUltimo->id_product . '/' . $fileName,
+                ]);
+                $file->move($patch, $fileName);
+            }
         }
         return redirect()->route('productos.index');
     }

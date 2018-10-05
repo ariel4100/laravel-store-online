@@ -47,7 +47,8 @@
                     <tbody>
                     @foreach($pro as $item)
                     <tr>
-                        <th scope="row">{{$item->id}}</th>
+                        <input type="hidden" name="idproducto" value="{{$item->id_product}}">
+                        <th scope="row">{{$item->id_product}}</th>
                         <td><img class="img-responsive img-thumbnail" src="{{ asset('uploads/Products/'.$item->image_pro) }}" style="height: 100px; width: 100px" alt=""></td>
                         <td>{{$item->name_pro}}</td>
                         <td>{{$item->category->name_cat}}</td>
@@ -58,7 +59,7 @@
                             <button type="button" class="btn btn-info dropdown-toggle btn-sm" data-toggle="dropdown">ver opciones</button>
                             <div class="dropdown-menu">
                                 <a href="{{ route('productos.edit',$item->id_product) }}" class="dropdown-item">Editar</a>
-                                <a href="" class="dropdown-item">Agregar Galeria</a>
+                                <a href="#modalgalery" class="dropdown-item" id="btngalery" data-toggle="modal">Agregar Galeria</a>
                                 <form id="delete-form-{{ $item->id_product }}" action="{{ route('productos.destroy',$item->id_product) }}" style="display: none;" method="POST">
                                     @csrf
                                     @method('DELETE')
@@ -79,5 +80,31 @@
                 {{ $pro->render() }}
             </div>
         </div>
-    </div>
+        <!--<div class="modal fade" id="modalgalery">
+            <div class="modal-dialog modal-notify modal-success">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <p class="heading lead">Galeria de Imagenes</p>
+
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="white-text">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="lead">Agrege las imagenes que desee relacionadas con el producto!!</p>
+                        <form action=" " class="dropzone" method="POST">
+
+                            <div class="fallback">
+                                <input name="file" type="file" multiple />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <a type="button" class="btn btn-success">Get it now <i class="fa fa-diamond ml-1"></i></a>
+                        <a type="button" class="btn btn-outline-success waves-effect" data-dismiss="modal">No, thanks</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>--->
 @endsection

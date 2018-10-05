@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->unsignedInteger('color_id_pro')->nullable();
             $table->string('name_pro');
             $table->string('description_pro')->nullable();
+            $table->decimal('price_before_pro',11,2)->nullable();
             $table->decimal('price_pro',11,2);
             $table->integer('quantity_pro');
             $table->string('image_pro')->nullable();

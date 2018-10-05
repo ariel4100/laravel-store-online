@@ -15,11 +15,11 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id_order');
-            $table->integer('user_id_ord')->unsigned();
-            $table->integer('product_id_ord')->unsigned();
-            $table->integer('quantity_ord');
-            $table->decimal('price_ord');
-            $table->decimal('total_ord');
+            $table->unsignedInteger('user_id_ord')->nullable();
+            //$table->integer('product_id_ord')->unsigned();
+            $table->string('shipping_ord')->nullable();
+            $table->enum('status_ord', ['PENDIENTE', 'EN PROCESO','FINALIZADO'])->default('PENDIENTE');
+            $table->decimal('total_ord')->nullable();
             $table->timestamps();
 
             //$table->foreign('product_id')->references('id')->on('products');

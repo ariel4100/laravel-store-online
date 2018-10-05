@@ -19,6 +19,8 @@
     <!----SELECT2----->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.5.1/css/fileinput.css">
+<!--<link href="" media="all" rel="stylesheet" type="text/css" />-->
     <style>
         body {
             font-size: .875rem;
@@ -103,12 +105,133 @@
             box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
         }
     </style>
+    <style>
+
+
+        body {
+            overflow-x: hidden;
+        }
+
+        #wrapper {
+            padding-left: 0;
+            -webkit-transition: all 0.5s ease;
+            -moz-transition: all 0.5s ease;
+            -o-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+        }
+
+        #wrapper.toggled {
+            padding-left: 250px;
+        }
+
+        #sidebar-wrapper {
+            z-index: 1000;
+            position: fixed;
+            left: 250px;
+            width: 0;
+            height: 100%;
+            margin-left: -250px;
+            overflow-y: auto;
+            background: #000;
+            -webkit-transition: all 0.5s ease;
+            -moz-transition: all 0.5s ease;
+            -o-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+        }
+
+        #wrapper.toggled #sidebar-wrapper {
+            width: 250px;
+        }
+
+        #page-content-wrapper {
+            width: 100%;
+            position: absolute;
+            padding: 15px;
+        }
+
+        #wrapper.toggled #page-content-wrapper {
+            position: absolute;
+            margin-right: -250px;
+        }
+
+
+        /* Sidebar Styles */
+
+        .sidebar-nav {
+            position: absolute;
+            top: 0;
+            width: 250px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .sidebar-nav li {
+            text-indent: 20px;
+            line-height: 40px;
+        }
+
+        .sidebar-nav li a {
+            display: block;
+            text-decoration: none;
+            color: #999999;
+        }
+
+        .sidebar-nav li a:hover {
+            text-decoration: none;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .sidebar-nav li a:active, .sidebar-nav li a:focus {
+            text-decoration: none;
+        }
+
+        .sidebar-nav>.sidebar-brand {
+            height: 65px;
+            font-size: 18px;
+            line-height: 60px;
+        }
+
+        .sidebar-nav>.sidebar-brand a {
+            color: #999999;
+        }
+
+        .sidebar-nav>.sidebar-brand a:hover {
+            color: #fff;
+            background: none;
+        }
+
+        @media(min-width:768px) {
+            #wrapper {
+                padding-left: 0;
+            }
+            #wrapper.toggled {
+                padding-left: 250px;
+            }
+            #sidebar-wrapper {
+                width: 0;
+            }
+            #wrapper.toggled #sidebar-wrapper {
+                width: 250px;
+            }
+            #page-content-wrapper {
+                padding: 20px;
+                position: relative;
+            }
+            #wrapper.toggled #page-content-wrapper {
+                position: relative;
+                margin-right: 0;
+            }
+        }
+    </style>
     @yield('style')
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark p-0 shadow">
             <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">CR Tienda Admin</a>
+            <a href="" class="btn btn-info btn-sm" id="btn-w">-</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -127,7 +250,7 @@
 
                     @include('partials.sidebar')
 
-                <div role="main" class="col-md-10 offset-md-2">
+                <div role="main" class="col-md-10 offset-md-2" id="wrapper">
                     @yield('content')
                 </div>
             </div>
@@ -142,7 +265,14 @@
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.10/js/mdb.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.5.1/js/fileinput.js"></script>
+    <!--<script src="{{ asset('/js/fileinput.js') }}" type="text/javascript"></script>-->
+
     <script>
+        $("#btn-w").click(function (e) {
+           e.preventDefault();
+           $("#wrapper").toggleClass("toggled");
+        });
         $(function () {
             //Initialize Select2 Elements
             $(".select2").select2();

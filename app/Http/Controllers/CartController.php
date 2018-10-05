@@ -77,6 +77,28 @@ class CartController extends Controller
         return $total;
     }
 
+    public static function cantidad()
+    {
+        $cart = Session::get('cart');
+        $option = Session::get('option');
+        $totqty = 0;
+        if ($cart)
+        {
+            foreach ($cart as $item)
+            {
+                foreach ($option as $data)
+                {
+                    if ($item->id_product == $data['id_product'])
+                    {
+                        $totqty += $data['quantity'];
+                    }
+                }
+            }
+        }
+        return $totqty;
+    }
+
+
     public function update(Request $request, $id)
     {
         $product = Product::findOrFail($id);
@@ -88,7 +110,7 @@ class CartController extends Controller
                 $item['quantity'] = $request->cantidad;
                 $opt[$key] = $item;
             }
-          
+
         }
         Session::put('option',$opt);
         Session::get('option');
@@ -96,12 +118,6 @@ class CartController extends Controller
         return redirect()->route('cart');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $product = Product::findOrFail($id);
@@ -121,48 +137,49 @@ class CartController extends Controller
         return redirect()->route('cart');
     }
 
-    public function clear()
-    {
-        Session::flush('cart');
-        return redirect()->route('cart');
-    }
-
     //Detalle del pedido
     public function orderDetail()
     {
         if(count(Session::get('cart')) <= 0) return redirect()->route('home');
         $cart = Session::get('cart');
         $option = Session::get('option');
-        $totqty = 0;
-        foreach ($cart as $item)
-        {
-            foreach ($option as $data)
-            {
-                if ($item->id_product == $data['id_product'])
-                {
-                    $totqty += $data['quantity'];
-                }
-            }
-        }
+        $totqty = $this->cantidad();
 
         //$pedido= array_merge($option,$cart);
         $total = $this->total();
         return view('cart.order-detail',compact('cart','option','total','totqty'));
     }
-    public function saveOrder()
+    public function saveOrder(Request $request)
     {
         $pedido = new Order();
         $cart = Session::get('cart');
+        $option = Session::get('option');
+
+        $pedido->user_id_ord = Auth::user()->id;
         foreach ($cart as $item)
         {
-            $pedido->user_id = Auth::id();
-            $pedido->product_id = $item->id;
-            $pedido->quantity = $item->quantity;
-            $pedido->price = $item->price;
+            $pedido->product_id_ord = $item->id_product;
+
         }
-        $pedido->total = $this->total();
+        $pedido->total_ord = $this->total();
         $pedido->save();
+
+        foreach ($option as $data)
+        {
+            $this->saveOrderItem($data);
+        }
         return redirect()->route('productos.get')->with('success','pedido exitosamente rebice su email Gracias :]');
         //return 'jjjjj'. dd($cart);
     }
+
+    private function saveOrderItem($item, $order_id)
+    {
+        OrderItem::create([
+            'quantity' => $item->quantity,
+            'price' => $item->price,
+            'product_id' => $item->id,
+            'order_id' => $order_id
+        ]);
+    }
+
 }

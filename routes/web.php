@@ -27,6 +27,7 @@ Route::middleware('auth')->group(function (){
     Route::resource('/productos', 'Admin\ProductController');
     Route::resource('/categorias', 'Admin\CategoryController');
     Route::resource('/usuarios', 'Admin\UserController');
+    Route::post('/subir-imagenes', 'Admin\ImageController@saveimage')->name('upload-images');
     Route::get('/variantes/colores', 'Admin\ColorController@index')->name('color');
     Route::post('/variantes/colores/create', 'Admin\ColorController@store')->name('color-create');
     Route::delete('/variantes/colores/delete/{id}', 'Admin\ColorController@destroy')->name('color-delete');

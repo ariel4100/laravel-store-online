@@ -21,7 +21,7 @@ class ItemController extends Controller
         $category = $request->get('categories');
         $items = Product::orderBy('id_product','DESC')
             ->where('status_pro','ACTIVO')
-            ->where('category_id_pro','LIKE',"%$category%")->paginate(5);
+            ->where('category_id_pro','LIKE',"%$category%")->get();
         return view('item.index',compact('items','allCat'));
     }
 

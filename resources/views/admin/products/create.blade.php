@@ -58,10 +58,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="ruta" class="col-sm-2 control-label">Imagenes</label>
-
-                        <div class="col-sm-10">
-                            <input id="file-1" type="file" multiple class="file" name="ruta[]" value="Ingrese una Imagen" required>
+                        <label>Upload All Files From Folder</label>
+                        <div class="file-loading">
+                            <input id="file-1" type="file" name="galery[]" multiple="multiple" accept="image/*">
                         </div>
                     </div>
                     <div class="form-group">
@@ -82,9 +81,21 @@
 @endsection
 @section('script')
     <script>
+        /*$("#input-21").fileinput({
+            previewFileType: "image",
+            browseClass: "btn btn-success",
+            browseLabel: "Pick Image",
+            browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
+            removeClass: "btn btn-danger",
+            removeLabel: "Delete",
+            removeIcon: "<i class=\"glyphicon glyphicon-trash\"></i> ",
+            uploadClass: "btn btn-info",
+            uploadLabel: "Upload",
+            uploadIcon: "<i class=\"glyphicon glyphicon-upload\"></i> "
+        });*/
         $("#file-1").fileinput({
             language: 'es',
-            uploadUrl: 'publicaciones', // you must set a valid URL here else you will get an error
+            uploadUrl: '{{ route('productos.store') }}', // you must set a valid URL here else you will get an error
             uploadAsync: false,
             initialPreviewFileType: 'image',
             allowedFileExtensions : ['jpg', 'png','gif'],
@@ -104,5 +115,6 @@
             }*/
         });
     </script>
+
 
 @endsection

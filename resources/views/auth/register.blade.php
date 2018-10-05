@@ -32,10 +32,10 @@
                             <!-- Default input -->
                             <div class="form-group col-md-6">
                                 <label>{{ __('Apellido') }}</label>
-                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
-                                @if ($errors->has('name'))
+                                <input id="surname" type="text" class="form-control{{ $errors->has('surname') ? ' is-invalid' : '' }}" name="surname" value="{{ old('surname') }}" required autofocus>
+                                @if ($errors->has('surname'))
                                     <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('name') }}</strong>
+                                    <strong>{{ $errors->first('surname') }}</strong>
                                 </span>
                                 @endif
                             </div>
@@ -60,16 +60,16 @@
                                 @endif
                             </div>
                             <div class="form-group col-md-6">
-                                <label>{{ __('Confirma tu Contraseña') }}</label>
+                                <label>{{ __('Confirmar Contraseña') }}</label>
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="form-group col-md-6">
                                 <label>Genero: </label>
-                                <select name="" id="" class="form-control {{ $errors->has('gender') ? ' is-invalid' : '' }}">
-                                    <option value="">Hombre</option>
-                                    <option value="">Mujer</option>
+                                <select name="gender" id="" class="form-control {{ $errors->has('gender') ? ' is-invalid' : '' }}">
+                                    <option value="HOMBRE">Hombre</option>
+                                    <option value="MUJER">Mujer</option>
                                 </select>
                                 @if ($errors->has('gender'))
                                     <span class="invalid-feedback" role="alert">
@@ -79,7 +79,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label>{{ __('Fecha de Nacimiento: ') }}</label>
-                                <input type="date" class="form-control" required>
+                                <input type="date" class="form-control" name="nationality" required>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary">{{ __('Registrar') }}</button>
