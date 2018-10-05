@@ -1,17 +1,21 @@
-@extends('layouts.appAdmin')
+@extends('layouts.appAdmin2')
 
 @section('content')
-    <div class="container">
+    <section class="content-header">
+        <h1>
+            Productos
+            <small>preview of simple tables</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+            <li class="active">Productos</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
         <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h2>productos</h2>
-                        <p>1500</p>
-                        <p>100</p>
-                    </div>
-                </div>
-            </div>
+            <div class="col-md-4"></div>
             <div class="col-md-8">
                 <form action="{{ route('product_filter') }}" method="GET">
                     <div class="form-group">
@@ -27,59 +31,75 @@
                 </form>
             </div>
         </div>
+        <!-- /.row -->
         <div class="row">
-            <div class="col-md-12">
-                <a href="{{ route('productos.create') }}" class="btn btn-success">+ Nuevo Producto</a>
-                <a href="{{ route('export_product') }}" class="btn btn-success">excel</a>
-                <table class="table">
-                    <thead class="black white-text">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">imagen</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">categoria</th>
-                        <th scope="col">precio</th>
-                        <th scope="col">cantidad</th>
-                        <th scope="col">estado</th>
-                        <th scope="col">acciones</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($pro as $item)
-                    <tr>
-                        <input type="hidden" name="idproducto" value="{{$item->id_product}}">
-                        <th scope="row">{{$item->id_product}}</th>
-                        <td><img class="img-responsive img-thumbnail" src="{{ asset('uploads/Products/'.$item->image_pro) }}" style="height: 100px; width: 100px" alt=""></td>
-                        <td>{{$item->name_pro}}</td>
-                        <td>{{$item->category->name_cat}}</td>
-                        <td>{{$item->price_pro}}</td>
-                        <td>{{$item->quantity_pro}}</td>
-                        <td><p class="badge badge-info">{{$item->status_pro}}</p></td>
-                        <td>
-                            <button type="button" class="btn btn-info dropdown-toggle btn-sm" data-toggle="dropdown">ver opciones</button>
-                            <div class="dropdown-menu">
-                                <a href="{{ route('productos.edit',$item->id_product) }}" class="dropdown-item">Editar</a>
-                                <a href="#modalgalery" class="dropdown-item" id="btngalery" data-toggle="modal">Agregar Galeria</a>
-                                <form id="delete-form-{{ $item->id_product }}" action="{{ route('productos.destroy',$item->id_product) }}" style="display: none;" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                </form>
-                                <a class="dropdown-item" onclick="if(confirm('Are you sure? You want to delete this?')){
-                                        event.preventDefault();
-                                        document.getElementById('delete-form-{{ $item->id_product }}').submit();
-                                        }else {
-                                        event.preventDefault();
-                                        }">Eliminar</a>
-                            </div>
-
-                        </td>
-                    </tr>
-                    @endforeach
-                    </tbody>
-                </table>
-                {{ $pro->render() }}
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <a href="{{ route('productos.create') }}" class="btn btn-success">+ Nuevo Producto</a>
+                        <a href="{{ route('export_product') }}" class="btn btn-success">excel</a>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-hover">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">imagen</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">categoria</th>
+                                <th scope="col">precio</th>
+                                <th scope="col">cantidad</th>
+                                <th scope="col">estado</th>
+                                <th scope="col">acciones</th>
+                            </tr>
+                            @foreach($pro as $item)
+                                <tr>
+                                    <input type="hidden" name="idproducto" value="{{$item->id_product}}">
+                                    <th scope="row">{{$item->id_product}}</th>
+                                    <td><img class="img-responsive img-thumbnail" src="{{ asset('uploads/Products/'.$item->image_pro) }}" style="height: 100px; width: 100px" alt=""></td>
+                                    <td>{{$item->name_pro}}</td>
+                                    <td>{{$item->category->name_cat}}</td>
+                                    <td>{{$item->price_pro}}</td>
+                                    <td>{{$item->quantity_pro}}</td>
+                                    <td><span class="label label-success">{{$item->status_pro}}</span></td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-info">Editar</button>
+                                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                                                <span class="caret"></span>
+                                                <span class="sr-only">Toggle Dropdown</span>
+                                            </button>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li><a href="{{ route('productos.edit',$item->id_product) }}" class="dropdown-item">Editar</a></li>
+                                                <li><a href="#modalgalery" class="dropdown-item" id="btngalery" data-toggle="modal">Agregar Galeria</a></li>
+                                                <li><form id="delete-form-{{ $item->id_product }}" action="{{ route('productos.destroy',$item->id_product) }}" style="display: none;" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                    </form>
+                                                    <a class="dropdown-item" onclick="if(confirm('Are you sure? You want to delete this?')){
+                                                            event.preventDefault();
+                                                            document.getElementById('delete-form-{{ $item->id_product }}').submit();
+                                                            }else {
+                                                            event.preventDefault();
+                                                            }">Eliminar</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="#">otro</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </table>
+                        {{ $pro->render() }}
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
             </div>
         </div>
+    </section>
+    <div class="container">
+
         <!--<div class="modal fade" id="modalgalery">
             <div class="modal-dialog modal-notify modal-success">
                 <div class="modal-content">
