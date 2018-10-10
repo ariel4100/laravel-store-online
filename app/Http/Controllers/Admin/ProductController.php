@@ -26,9 +26,10 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $name = $request->get('name');
+        $proTotal = Product::count();
         $pro = Product::orderBy('id_product','DESC')
         ->where('name_pro','LIKE',"%$name%")->paginate(5);
-        return view('admin.products.index',compact('pro'));
+        return view('admin.products.index',compact('pro','proTotal'));
     }
 
     public function filter(Request $request)
@@ -139,7 +140,9 @@ class ProductController extends Controller
     {
         $pro = Product::find($id);
         $allCat = Category::all();
-        return view('admin.products.edit',compact('pro','allCat'));
+        $allColor = ProductColor::where('product_id',$id)->get();
+        $allSize = ProductSize::where('product_id',$id)->get();
+        return view('admin.products.edit',compact('pro','allCat','allColor','allSize'));
     }
 
     /**

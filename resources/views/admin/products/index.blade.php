@@ -2,10 +2,7 @@
 
 @section('content')
     <section class="content-header">
-        <h1>
-            Productos
-            <small>preview of simple tables</small>
-        </h1>
+        <h1>Listado de Productos</h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
             <li class="active">Productos</li>
@@ -15,19 +12,33 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
-            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="small-box bg-aqua">
+                    <div class="inner">
+                        <h3>{{ $proTotal }}</h3>
+
+                        <p>Total Productos</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-bag"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
             <div class="col-md-8">
-                <form action="{{ route('product_filter') }}" method="GET">
-                    <div class="form-group">
-                        <input type="text" name="name" class="form-control" placeholder="Buscar por Nombre">
+                <form action="{{ route('product_filter') }}" method="GET" class="box box-primary">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <input type="text" name="name" class="form-control" placeholder="Buscar por Nombre">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="category" class="form-control" placeholder="Buscar por Categoria">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="status" class="form-control" placeholder="Buscar por Estado">
+                        </div>
+                        <button type="submit" class="btn btn-success">Buscar</button>
                     </div>
-                    <div class="form-group">
-                        <input type="text" name="category" class="form-control" placeholder="Buscar por Categoria">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" name="status" class="form-control" placeholder="Buscar por Estado">
-                    </div>
-                    <button type="submit" class="btn btn-success">Buscar</button>
                 </form>
             </div>
         </div>
@@ -40,9 +51,9 @@
                         <a href="{{ route('export_product') }}" class="btn btn-success">excel</a>
                     </div>
                     <!-- /.box-header -->
-                    <div class="box-body table-responsive no-padding">
-                        <table class="table table-hover">
-                            <tr>
+                    <div class="box-body table-responsive no-padding ">
+                        <table class="table table-hover table-bordered">
+                            <tr class="active">
                                 <th scope="col">#</th>
                                 <th scope="col">imagen</th>
                                 <th scope="col">Nombre</th>
@@ -56,7 +67,7 @@
                                 <tr>
                                     <input type="hidden" name="idproducto" value="{{$item->id_product}}">
                                     <th scope="row">{{$item->id_product}}</th>
-                                    <td><img class="img-responsive img-thumbnail" src="{{ asset('uploads/Products/'.$item->image_pro) }}" style="height: 100px; width: 100px" alt=""></td>
+                                    <td><img class="img-responsive " src="{{ asset('uploads/Products/'.$item->image_pro) }}" style="height: 50px; width: 50px"  ></td>
                                     <td>{{$item->name_pro}}</td>
                                     <td>{{$item->category->name_cat}}</td>
                                     <td>{{$item->price_pro}}</td>

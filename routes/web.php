@@ -16,33 +16,42 @@ Auth::routes();
 Route::get('/product', 'ItemController@index')->name('item');
 Route::get('/producto/{id}', 'ItemController@show')->name('detail-item');
 Route::get('/cart', 'CartController@index')->name('cart');
-Route::get('/carrito/pedido-comprobante','CartController@orderDetail')->name('cart-order')->middleware('auth');
 Route::post('carrito/agregar/producto','CartController@add')->name('cart-add');
 Route::post('carrito/update/{id}','CartController@update')->name('cart-update');
 Route::get('carrito/borrar/{id}','CartController@destroy')->name('cart-destroy');
 Route::resource('/contacto', 'ContactController');
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
+
+//--------Usuarios Autenticados---------
 Route::middleware('auth')->group(function (){
+    Route::get('/carrito/pedido-comprobante','CartController@orderDetail')->name('cart-order');
+});
+//-----routes de administrador------
+Route::middleware('auth','admin')->prefix('admin')->group(function (){
     Route::resource('/dashboard', 'Admin\AdminController');
     Route::resource('/productos', 'Admin\ProductController');
-    Route::resource('/categorias', 'Admin\CategoryController');
     Route::resource('/usuarios', 'Admin\UserController');
-    Route::post('/subir-imagenes', 'Admin\ImageController@saveimage')->name('upload-images');
+    Route::resource('/contact', 'Admin\ContactController');
+
+    //Route::post('/subir-imagenes', 'Admin\ImageController@saveimage')->name('upload-images');
     Route::get('/variantes/colores', 'Admin\ColorController@index')->name('color');
     Route::post('/variantes/colores/create', 'Admin\ColorController@store')->name('color-create');
     Route::delete('/variantes/colores/delete/{id}', 'Admin\ColorController@destroy')->name('color-delete');
     Route::get('/variantes/sizes', 'Admin\SizeController@index')->name('size');
     Route::post('/variantes/talle/create', 'Admin\SizeController@store')->name('size-create');
     Route::delete('/variantes/talle/delete/{id}', 'Admin\SizeController@destroy')->name('size-delete');
+    Route::get('/categorias', 'Admin\CategoryController@index')->name('category');
+    Route::post('/categoria/create', 'Admin\CategoryController@store')->name('category-create');
+    Route::delete('/categoria/delete/{id}', 'Admin\CategoryController@destroy')->name('category-delete');
     //-----Buscadores------
     Route::get('/user/{name}', 'Admin\UserController@index')->name('user_filter');
     Route::get('/filter-product', 'Admin\ProductController@index')->name('product_filter');
     Route::get('/user/{name}', 'Admin\UserController@index')->name('user_filter');
+
     //----EXPORT TO EXCEL-----
     Route::get('/user-excel', 'Admin\ExportController@user')->name('export_user');
     Route::get('/products-excel', 'Admin\ExportController@product')->name('export_product');
     Route::get('/categories-excel', 'Admin\ExportController@category')->name('export_category');
     Route::get('/color-excel', 'Admin\ExportController@color')->name('export_color');
     Route::get('/size-excel', 'Admin\ExportController@size')->name('export_size');
-
 });

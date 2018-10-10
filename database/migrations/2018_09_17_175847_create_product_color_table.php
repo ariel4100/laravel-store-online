@@ -15,9 +15,9 @@ class CreateProductColorTable extends Migration
     {
         Schema::create('product_color', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('color_id');
-            $table->unsignedInteger('product_id');
-            $table->enum('status', ['ACTIVO', 'INACTIVO']);
+            $table->unsignedInteger('color_id')->nullable();
+            $table->unsignedInteger('product_id')->nullable();
+            $table->enum('status', ['ACTIVO', 'INACTIVO'])->default('ACTIVO');
             $table->timestamps();
         });
     }

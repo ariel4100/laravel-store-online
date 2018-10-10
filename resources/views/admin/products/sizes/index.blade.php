@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Colores del Producto
+            Talles del Producto
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
@@ -37,8 +37,8 @@
             <div class="col-md-8">
                 <div class="box">
                     <div class="box-body table-responsive no-padding">
-                        <table class="table table-hover">
-                            <tr>
+                        <table class="table table-hover table-bordered">
+                            <tr class="active">
                                 <th scope="col">#</th>
                                 <th scope="col">Talle</th>
                                 <th scope="col">Estado</th>
@@ -48,7 +48,7 @@
                                 <tr>
                                     <th>{{$item->id_size}}</th>
                                     <th>{{$item->letter == null ? $item->number : $item->letter }}</th>
-                                    <th>{{$item->status_size}}</th>
+                                    <th>{{$item->status_number == 0 ? 'INACTIVO' : 'ACTIVO'}}</th>
                                     <td>
                                         <form id="delete-form-{{ $item->id_size }}" action="{{ route('size-delete',$item->id_size) }}" style="display: none;" method="POST">
                                             @method('DELETE')

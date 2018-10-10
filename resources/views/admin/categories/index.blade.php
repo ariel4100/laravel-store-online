@@ -11,27 +11,29 @@
         </ol>
     </section>
     <div class="content">
-        <a href="{{ route('categorias.create') }}" class="btn btn-success">Nueva Categoria</a>
-        <a href="{{ route('export_category') }}" class="btn btn-success">excel</a>
-        <div class="row my-4">
-            @foreach($allCat as $item)
-            <div class="col-md-4">
+        <div class="row">
+            <div class="col-md-4 mt-2">
                 <div class="box box-primary">
                     <div class="box-body">
-                        <h2>{{$item->name_cat}}</h2>
-                        <p>1500</p>
-                        <p>100</p>
+                        <form action="{{ route('category-create') }}" method="POST" class="border border-dark p-2">
+                            @method('POST')
+                            @csrf
+                            <div class="form-group">
+                                <label for="name">Nueva Categoria</label>
+                                <input type="text" name="name_cat" class="form-control">
+                            </div>
+                            <button type="submit" class="btn btn-block btn-success">Guardar Categoria</button>
+                        </form>
                     </div>
                 </div>
             </div>
-            @endforeach
         </div>
         <div class="row">
             <div class="col-md-8">
                 <div class="box">
                     <div class="box-body table-responsive no-padding">
-                        <table class="table table-hover">
-                            <tr>
+                        <table class="table table-hover table-bordered">
+                            <tr class="active">
                                 <th scope="col">#</th>
                                 <th scope="col">Categoria</th>
                                 <th scope="col">Estado</th>
@@ -43,16 +45,11 @@
                                     <th>{{$item->name_cat}}</th>
                                     <th></th>
                                     <td>
-                                        <form id="delete-form-{{ $item->id_category }}" action="{{ route('size-delete',$item->id_category) }}" style="display: none;" method="POST">
+                                        <form action="{{ route('category-delete',$item->id_category) }}"   method="POST">
                                             @method('DELETE')
                                             @csrf
+                                            <button type="submit" class="btn btn-danger">Eliminar</button>
                                         </form>
-                                        <a onclick="if(confirm('estas seguro que desea eliminar??')){
-                                                event.preventDefault();
-                                                document.getElementById('delete-form-{{ $item->id_category }}').submit();
-                                                }else{
-                                                event.preventDefault();
-                                                }" class="btn btn-danger">Eliminar</a>
                                     </td>
                                 </tr>
                             @endforeach

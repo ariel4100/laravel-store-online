@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Model\Category;
 use App\Model\Product;
 use App\Model\ProductColor;
+use App\Model\ProductImage;
 use App\Model\ProductSize;
 use Illuminate\Http\Request;
 
@@ -29,8 +30,9 @@ class ItemController extends Controller
     {
         $color = ProductColor::where('product_id',$id)->get();
         $size = ProductSize::where('product_id',$id)->get();
-        $item = Product::where('status_pro','ACTIVO')->where('id_product',$id)->first();
-        return view('item.show',compact('item','size','color'));
+        $galery = ProductImage::where('product_id_img',$id)->get();
+        $productos = Product::where('status_pro','ACTIVO')->where('id_product',$id)->first();
+        return view('item.show',compact('productos','size','color','galery'));
     }
 
 

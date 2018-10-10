@@ -8,7 +8,7 @@
         </div>
     </div>
 </div>--->
-<nav class="navbar navbar-expand-md navbar-dark light-blue darken-1 fixed-top">
+<nav class="navbar navbar-expand-md navbar-dark  fixed-top" style="background-color: rgba(0,0,0,0.7);">
     <div class="container">
         <a class="navbar-brand border rounded-circle p-2" href="{{ url('/') }}">
             {{ config('app.name', 'CR-Tienda') }}
@@ -36,10 +36,10 @@
             @guest
                 <!-- Dropdown -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Registrate</a>
                         <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="{{ route('login') }}">Login</a>
-                            <a class="dropdown-item" href="{{ route('register') }}">Registrar</a>
+                            <a class="dropdown-item" href="{{ route('register') }}">Registrate</a>
                         </div>
                     </li>
                 @else
@@ -48,7 +48,9 @@
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            @if(Auth::user()->role == "ADMIN")
                             <a class="dropdown-item" href="{{ route('dashboard.index') }}">admin</a>
+                            @endif
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

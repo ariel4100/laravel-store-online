@@ -15,9 +15,9 @@ class CreateProductSizeTable extends Migration
     {
         Schema::create('product_size', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('size_id');
-            $table->unsignedInteger('product_id');
-            $table->enum('status', ['ACTIVO', 'INACTIVO']);
+            $table->unsignedInteger('size_id')->nullable();
+            $table->unsignedInteger('product_id')->nullable();
+            $table->enum('status', ['ACTIVO', 'INACTIVO'])->default('ACTIVO');
             $table->timestamps();
         });
     }

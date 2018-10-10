@@ -33,8 +33,8 @@
             <div class="col-md-8">
                 <div class="box">
                     <div class="box-body table-responsive no-padding">
-                        <table class="table table-hover">
-                            <tr>
+                        <table class="table table-hover table-bordered">
+                            <tr class="active">
                                 <th scope="col">#</th>
                                 <th scope="col">Color</th>
                                 <th scope="col">Estado</th>
@@ -44,7 +44,7 @@
                                 <tr>
                                     <th>{{$item->id_color}}</th>
                                     <th>{{$item->name_color}}</th>
-                                    <th>{{$item->status_color}}</th>
+                                    <th>{{$item->status_color == 0 ? 'INACTIVO' : 'ACTIVO'}}</th>
                                     <td>
                                         <form id="delete-form-{{ $item->id_color }}" action="{{ route('color-delete',$item->id_color) }}" style="display: none;" method="POST">
                                             @method('DELETE')

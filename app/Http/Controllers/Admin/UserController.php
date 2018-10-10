@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -37,7 +38,21 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        User::create([
+            'name' => $request->name,
+            'surname' => $request->surname,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'gender' => $request->gender,
+            'nationality' => $request->nationality,
+            'country' => $request->nationality,
+            'province' => $request->province,
+            'location' => $request->location,
+            'phone' => $request->phone,
+            'profile_client' => $request->profile_client,
+            'address' => $request->address,
+        ]);
+        return redirect()->route('usuarios.index');
     }
 
     /**
@@ -72,7 +87,20 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        User::update([
+            'name' => $request->name,
+            'surname' => $request->surname,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'gender' => $request->gender,
+            'nationality' => $request->nationality,
+            'country' => $request->nationality,
+            'province' => $request->province,
+            'location' => $request->location,
+            'phone' => $request->phone,
+            'profile_client' => $request->profile_client,
+            'address' => $request->address,
+        ]);
     }
 
     /**

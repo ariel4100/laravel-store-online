@@ -1,22 +1,28 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container-fluid my-5 pt-5">
-        <!-- Section: Products v.2 -->
-        <section class="text-center">
-            <!-- Grid row -->
+    <div class="container my-5 pt-5">
+        <div class="jumbotron">
             <div class="row">
                 <div class="col-md-6">
-                    <img src="{{ asset('uploads/Products/'.$item->image_pro) }}" alt="" class="img-fluid">
+                    <img src="{{ asset('uploads/Products/'.$productos->image_pro) }}" alt="" class="img-fluid">
+                    @foreach($galery as $item)
+                    <figure class="col-md-3 d-md-inline-block">
+                        <a href="{{ asset($item->pics) }}" data-size="1600x1067">
+                            <img src="{{ asset($item->pics) }}" class="img-fluid">
+                        </a>
+                    </figure>
+                    @endforeach
                 </div>
+                <!--/.Carousel Wrapper-->
                 <div class="col-md-6">
-                    <h2 class="card-title"><strong>{{ $item->name_pro }}</strong></h2>
-                    <p class="lead"><b>{{ number_format( $item->price_pro,2) }}$</b></p>
+                    <h2 class="h1"><b>{{ strtoupper($productos->name_pro) }}</b></h2>
+                    <p class="text-danger h4"><b>{{ number_format( $productos->price_pro,2) }}$</b></p>
                     <form action="{{ route('cart-add') }}" method="POST">
                         <div class="row">
                             @method('POST')
                             @csrf
-                            <div class="col-md-3">
+                            <div class="col-md-6">
                                 <div class="form group">
                                     <label for="talle">Talle</label>
                                     <select name="size" class="form-control">
@@ -26,7 +32,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-6">
                                 <div class="form group">
                                     <label for="talle">Colores</label>
                                     <select name="color" class="form-control">
@@ -36,25 +42,24 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-4">
                                 <div class="form group">
                                     <label for="talle">Cantidad</label>
-                                    <input type="number" name="quantity" class="form-control">
-                                    <input type="text" name="id_product" class="form-control" value="{{ $item->id_product }}" style="display: none;">
+                                    <input type="number" name="quantity" value="1" class="form-control">
+                                    <input type="text" name="id_product" class="form-control" value="{{ $productos->id_product }}" style="display: none;">
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <button type="submit" class="btn btn-success btn-sm mt-4">Agregar a carrito <i class="fa fa-cart-plus ml-2" aria-hidden="true"></i></button>
+                            <div class="col-md-12 my-3">
+                                <button type="submit" class="btn btn-success">Agregar a carrito <i class="fa fa-cart-plus ml-2" aria-hidden="true"></i></button>
+                                <a href="{{ route('item') }}" class="btn btn-dark">Volver atras</a>
                             </div>
                         </div>
                     </form>
-                    <a href="{{ route('item') }}" class="btn btn-dark">Volver atras</a>
                 </div>
 
             </div>
-            <!-- Grid row -->
+        </div>
 
-        </section>
         <!-- Section: Products v.5 -->
         <section class="text-center my-5">
             <!-- Carousel Wrapper -->

@@ -3,22 +3,20 @@
 
 @endsection
 @section('content')
-    <section class="content-header">
-        <h1>
-            Nuevo Producto
-            <small>preview of simple tables</small>
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-            <li class="active">Productos</li>
-        </ol>
-    </section>
+    <div class="callout callout-info">
+        <h4>Al crear un nuevo Producto tendra que completar todos los campos </h4>
+
+        <p>Follow the steps to continue to payment.</p>
+    </div>
     <!-- Main content -->
     <section class="content">
         <div class="row">
             <form role="form" action="{{route('productos.store')}}" method="POST" enctype="multipart/form-data">
                 <div class="col-md-8">
                     <div class="box box-primary">
+                        <div class="box-header">
+                            <h4>Ingresar Nuevo Producto</h4>
+                        </div>
                         <div class="box-body">
                             <div class="form-group col-md-4">
                                 <label>Nombre del producto</label>
@@ -33,34 +31,34 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-4">
-                                <label>Precio</label>
-                                <input type="text" name="price_pro" class="form-control mb-4" placeholder="Precio">
+                                <label>Precio Unidad</label>
+                                <input type="number" name="price_pro" class="form-control mb-4" placeholder="Precio">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label>Precio Mayor</label>
+                                <input type="number" name="price_pro" class="form-control mb-4" placeholder="Precio">
                             </div>
                             <div class="form-group col-md-4">
                                 <label>Cantidad del Producto</label>
-                                <input type="text" name="quantity_pro" class="form-control mb-4" placeholder="cantidad">
+                                <input type="number" name="quantity_pro" class="form-control mb-4" placeholder="cantidad">
                             </div>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroupFileAddon01">subir</span>
-                                </div>
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input"  name="image_pro" aria-describedby="inputGroupFileAddon01">
-                                    <label class="custom-file-label" for="inputGroupFile01">imagen-principal</label>
-                                </div>
+                            <div class="form-group col-md-12">
+                                <label>Foto Principal (<small>Se visualizara en la portada del Producto</small>)</label>
+                                <input type="file" class="custom-file-input"  name="image_pro" aria-describedby="inputGroupFileAddon01">
                             </div>
-                            <div class="form-group col-md-4">
-                                <label>Upload All Files From Folder</label>
+
+                            <div class="form-group col-md-12">
+                                <label>Subir fotos relacionado con el Producto</label>
                                 <div class="file-loading">
                                     <input id="file-1" type="file" name="galery[]" multiple="multiple" accept="image/*">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>Estado</label>
+                                <label>Estado del Producto (<small>Segun el estado se muestra en tu Tienda</small>)</label>
                                 <select class="form-control" name="status_pro">
-                                    <option  selected>ACTIVO</option>
-                                    <option  selected>INACTIVO</option>
-                                    <option  selected>PAUSA</option>
+                                    <option>ACTIVO</option>
+                                    <option>INACTIVO</option>
+                                    <option>PAUSA</option>
                                 </select>
                             </div>
                         </div>
@@ -70,6 +68,9 @@
                 @csrf
                 <div class="col-md-4">
                     <div class="box box-primary">
+                        <div class="box-header">
+                            <h4>Variantes del Producto</h4>
+                        </div>
                         <div class="box-body">
                             <div class="form-group">
                                 <label>Talles</label>
@@ -89,12 +90,12 @@
                                 </select>
                             </div>
                             <p>Si quiere agregar nuevos Talles y Colores haga click!!!! </p>
-                            <a href="{{ route('size') }}" class="btn btn-info">Talles</a>
-                            <a href="{{ route('color') }}" class="btn btn-info">Color</a>
+                            <a href="{{ route('size') }}" class="btn btn-info btn-block">Agregar Talles</a>
+                            <a href="{{ route('color') }}" class="btn btn-info btn-block">Agregar Colores</a>
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-info btn-block" type="submit">Guardar</button>
+                <button class="btn btn-info btn-block" type="submit">Guardar Producto</button>
                 <a href="{{ route('productos.index') }}" class="btn btn-default btn-block">Volver atras</a>
             </form>
         </div>

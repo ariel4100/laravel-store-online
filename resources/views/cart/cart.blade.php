@@ -1,12 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <section class="container    my-5 pt-3">
-        <h2 class="h1-responsive font-weight-bold text-center my-5"><u>¡Carrito de Compras!</u></h2>
-        <div class="row">
-            <div class="col-md-12">
+    <section class="container my-5 py-5">
+        <div class="jumbotron">
+            <h2 class="h1-responsive font-weight-bold wow bounceInRight"><u>¡Carrito de Compras!</u></h2>
                 @if(count($cart))
-                    <table class="table">
+                    <table class="table wow fadeIn">
                         <thead class="table-dark">
                         <tr>
                             <th>codigo</th>
@@ -94,7 +93,6 @@
                     </div>
                 @endif
             </div>
-        </div>
     </section>
 @endsection
 
