@@ -515,7 +515,6 @@
             },*/
         },
         created(){
-            alert('dsd');
                 this.getItems()
         }
         },
