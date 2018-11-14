@@ -17,12 +17,14 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
     @yield('style')
 </head>
 <body>
 
 <div id="app">
-    @include('partials.header')
+    <navbar-component></navbar-component>
+    <router-view></router-view>
     @yield('content')
     @include('partials.footer')
 </div>
@@ -38,9 +40,11 @@
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.11/js/mdb.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<script src="{{ asset('js/app.js') }}"></script>
+
 <script type="text/javascript">
-    // Animations initialization
-    new WOW().init();
+// Animations initialization
+new WOW().init();
 </script>
 @yield('script')
 </body>

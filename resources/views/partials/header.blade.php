@@ -24,19 +24,14 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('home') }}">{{ __('Inicio') }}</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('item') }}">{{ __('Productos') }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('cart') }}"><i class="fas fa-shopping-cart"></i>({{ \App\Http\Controllers\CartController::cantidad()}})</a>
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('contacto.index') }}">{{ __('Contacto') }}</a>
                 </li>
             @guest
                 <!-- Dropdown -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Registrate</a>
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ingresar</a>
                         <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="{{ route('login') }}">Login</a>
                             <a class="dropdown-item" href="{{ route('register') }}">Registrate</a>
@@ -62,6 +57,7 @@
                         </div>
                     </li>
                 @endguest
+                <cart-menu-component></cart-menu-component>
             </ul>
         </div>
     </div>

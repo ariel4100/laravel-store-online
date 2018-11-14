@@ -1,11 +1,12 @@
-
+import store from './store';
+import router from './router';
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-//require('./bootstrap');
+require('./bootstrap');
 
 window.Vue = require('vue');
 
@@ -15,9 +16,12 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('navbar-component', require('./components/NavbarComponent.vue'));
 Vue.component('product-component', require('./components/ProductComponent.vue'));
-
+Vue.component('cart-component', require('./components/CartComponent.vue'));
+Vue.component('cart-menu-component', require('./components/HomeComponent.vue'));
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    router,
+    store
 });

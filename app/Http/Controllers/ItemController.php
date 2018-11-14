@@ -23,16 +23,34 @@ class ItemController extends Controller
         $items = Product::orderBy('id_product','DESC')
             ->where('status_pro','ACTIVO')
             ->where('category_id_pro','LIKE',"%$category%")->get();
-        return view('item.index',compact('items','allCat'));
+        return response()->json(['items' => $items,'cat' => $allCat]);
+    }
+    public function item(){
+        return view('item.index');
+    }
+    public function show(){
+        return view('item.show');
     }
 
-    public function show($id)
+    public function modalCart(Request $request)
     {
-        $color = ProductColor::where('product_id',$id)->get();
-        $size = ProductSize::where('product_id',$id)->get();
-        $galery = ProductImage::where('product_id_img',$id)->get();
-        $productos = Product::where('status_pro','ACTIVO')->where('id_product',$id)->first();
-        return view('item.show',compact('productos','size','color','galery'));
+        $color = ProductColor::where('product_id',$request->id_product)->get();
+        $colores = array();
+        foreach ($color as $data)
+        {
+            array_push($colores, $data->color->name_color);
+        }
+        $size = ProductSize::where('product_id',$request->id_product)->get();
+        $talles = array();
+        foreach ($size as $data)
+        {
+            array_push($talles, $data->size->number);
+        }
+        $galery = ProductImage::where('product_id_img',$request->id_product)->get();
+        $productos = Product::where('status_pro','ACTIVO')->where('id_product',$request->id_product)->first();
+        return response()->json(['items' => $productos,'color' => $colores,'size' => $talles,'images' => $galery ]);
+        //return redirect()->route('detail-item');
+        //return view('item.show',compact('productos','size','color','galery'));
     }
 
 

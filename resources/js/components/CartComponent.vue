@@ -5,20 +5,26 @@
             <table class="table wow fadeIn">
                 <thead class="table-dark">
                 <tr>
-                    <th>codigo</th>
                     <th>imagen</th>
                     <th>producto</th>
-                    <th>variantes</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Total</th>
                     <th>eliminar fila</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row"></th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                <tr v-for="cart in getProductsInCart">
+                    <th scope="row"><img :src="'../uploads/Products/' + cart.img" class="img-fluid" width="50px" height="50px"></th>
+                    <td>
+                        <p class="h4">{{ cart.name}}</p>
+                        <p class="font-weight-bold">{{ cart.color}}</p>
+                        <p>T-{{ cart.size}}</p>
+                    </td>
+                    <td>{{ cart.price }}</td>
+                    <td>{{ cart.quantity }}</td>
+                    <td>{{ cart.price * cart.quantity }}</td>
+                    <td><a href="" class="btn btn-danger">x</a></td>
                 </tr>
                 </tbody>
             </table>
@@ -27,9 +33,27 @@
 </template>
 
 <script>
+    import { mapGetters } from 'vuex';
     export default {
+        data(){
+            return{
+                cartProduct:[],
+            }
+        },
         mounted() {
-            console.log('Component mounted.')
-        }
+
+        },
+        computed: {
+            ...mapGetters([
+                'getProductsInCart',
+            ]),
+
+        },
+        methods: {
+
+            hasProduct() {
+                return this.getProductsInCart.length > 0;
+            },
+        },
     }
 </script>

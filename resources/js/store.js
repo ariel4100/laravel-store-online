@@ -1,24 +1,68 @@
+import Vue from 'vue';
+import Vuex from 'vuex';
+import toastr from 'toastr'
+Vue.use(Vuex);
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
+export default new Vuex.Store({
+    state: {
+        cartProduct: localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [],
+        currentProduct: {},
+        showModal: false,
+        showPopupCart: false,
+    },
 
-require('./bootstrap');
+    getters: {
+        getNotebooks: state => state.notebooks,
+        getSmartphones: state => state.smartphones,
+        getAllProducts: state => state.notebooks.concat(state.smartphones),
+        getProductsInCart: state => state.cartProduct.reverse(),
+        getCurrentProduct: state => state.currentProduct,
+        getShowModal: state => state.showModal,
+        getPopupCart: state => state.showPopupCart,
+    },
 
-window.Vue = require('vue');
+    mutations: {
+        ADD_PRODUCT: (state, item) => {
+            state.cartProduct.push({
+                size: item.size,
+                color: item.color,
+                name: item.name,
+                price: item.price,
+                img: item.img,
+                quantity: item.quantity,
+            });
+            localStorage.setItem('cart',JSON.stringify(state.cartProduct));
+            toastr.success('se agrego a tu carrito');
+        },
+        REMOVE_PRODUCT: (state, index) => {
+            state.cartProducts.splice(index, 1);
+        },
+        CURRENT_PRODUCT: (state, product) => {
+            state.currentProduct = product;
+        },
+        SHOW_MODAL: (state) => {
+            state.showModal = !state.showModal;
+        },
+        SHOW_POPUP_CART: (state) => {
+            state.showPopupCart = !state.showPopupCart;
+        },
+    },
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
-Vue.component('product-component', require('./components/ProductComponent.vue'));
-Vue.component('cart-component', require('./components/CartComponent.vue'));
-Vue.component('cart-menu-component', require('./components/CartMenuComponent.vue'));
-const app = new Vue({
-    el: '#app'
+    actions: {
+        addProducts: (context, product) => {
+            context.commit('ADD_PRODUCT', product);
+        },
+        removeProduct: (context, index) => {
+            context.commit('REMOVE_PRODUCT', index);
+        },
+        currentProduct: (context, product) => {
+            context.commit('CURRENT_PRODUCT', product);
+        },
+        showOrHiddenModal: (context) => {
+            context.commit('SHOW_MODAL');
+        },
+        showOrHiddenPopupCart: (context) => {
+            context.commit('SHOW_POPUP_CART');
+        },
+    },
 });
