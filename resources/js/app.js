@@ -17,9 +17,9 @@ window.Vue = require('vue');
  */
 
 Vue.component('navbar-component', require('./components/NavbarComponent.vue'));
-Vue.component('product-component', require('./components/ProductComponent.vue'));
-Vue.component('cart-component', require('./components/CartComponent.vue'));
-Vue.component('cart-menu-component', require('./components/HomeComponent.vue'));
+Vue.component('productos', require('./views/Productos.vue'));
+
+
 const app = new Vue({
     el: '#app',
     router,

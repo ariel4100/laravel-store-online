@@ -12,10 +12,10 @@
                         <router-link :to="{ name: 'Inicio' }" class="nav-link">Inicio</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link :to="{ name: 'Producto' }" class="nav-link">Productos</router-link>
+                        <router-link :to="{ name: 'Productos' }" class="nav-link">Productos</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link :to="{ name: 'Carro' }" class="nav-link" v-if="hasProduct()">
+                        <router-link :to="{ name: 'Carrito' }" class="nav-link" v-if="hasProduct()">
                             <i class="fas fa-shopping-cart"></i>
                             ({{ getProductsInCart.length }})
                         </router-link>

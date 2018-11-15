@@ -2,20 +2,22 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 
-import HomeComponent from '../components/HomeComponent'
-import ProductComponent from '../components/ProductComponent'
-import ContactComponent from '../components/ContactComponent'
-import DetailComponent from '../components/DetailComponent'
-import CartComponent from '../components/CartComponent'
+import Inicio from '../views/Inicio'
+import Productos from '../views/Productos'
+import Contacto from '../views/Contacto'
+import DetalleProducto from '../views/DetalleProducto'
+import Carrito from '../views/Carrito'
+import ConfirmarPedido from '../views/ConfirmarPedido'
 
 Vue.use(VueRouter);
 export default new VueRouter({
    routes: [
-       { path: '/', name: 'Inicio', component: HomeComponent},
-       { path: '/productos', name: 'Producto', component: ProductComponent},
-       { path: '/contacto', name: 'Contacto', component: ContactComponent},
-       { path: '/detalle/:itemName', name: 'DetalleProducto', component: DetailComponent},
-       { path: '/carrito', name: 'Carro', component: CartComponent},
+       { path: '/', name: 'Inicio', component: Inicio},
+       { path: '/productos', name: 'Productos', component: Productos},
+       { path: '/contacto', name: 'Contacto', component: Contacto},
+       { path: '/detalle/:itemName', name: 'DetalleProducto', component: DetalleProducto},
+       { path: '/carrito', name: 'Carrito', component: Carrito},
+       { path: '/confirmar/pedido', name: 'ConfirmarPedido', component: ConfirmarPedido},
    ],
     mode: 'history'
 });

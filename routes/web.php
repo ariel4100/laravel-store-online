@@ -10,13 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Auth::routes();
+Route::get('/{any}', function(){
+    return view('layouts.app');
+})->where('any', '.*');
+//Auth::routes();
 //Route::resource('/home', 'HomeController');
 Route::get('/productos/all', 'ItemController@item')->name('item');
-Route::post('/producto/modal-cart', 'ItemController@modalCart');
 
-Route::get('/product', 'ItemController@index');
+
+
 Route::get('/producto/{id}', 'ItemController@show')->name('detail-item');
 Route::get('/cart', 'CartController@index')->name('cart');
 Route::post('carrito/agregar/producto','CartController@add')->name('cart-add');

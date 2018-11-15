@@ -1,51 +1,64 @@
 <template>
     <section class="">
-        <div class="container my-5 pt-5">
-            <div class="jumbotron">
-                <div class="row">
-                    <div class="col-md-6">
-                        <img src=" " alt="" class="img-fluid">
-
-                        <figure class="col-md-3 d-md-inline-block">
-                            <a href=" " data-size="1600x1067">
-                                <img :src="'../uploads/Products/' + product.image_pro" class="img-fluid">
-                            </a>
-                        </figure>
-
-                    </div>
-                    <!--/.Carousel Wrapper-->
-                    <div class="col-md-6">
-                        <h2 class="h1"><b> {{product.name_pro}}</b></h2>
-                        <p class="text-danger h4"><b> {{product.price_pro}} $</b></p>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label>Talle</label>
-                                <select v-model="addProduct.size" id="" class="form-control">
-                                    <option v-for="talle in modalTalle">
-                                        {{ talle }}
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label>Color</label>
-                                <select v-model="addProduct.color" id="" class="form-control">
-                                    <option v-for="color in modalColor">
-                                        {{ color }}
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="form group col-md-4">
-                                <label>Cantidad</label>
-                                <input type="number" v-model="addProduct.quantity" value="1" min="1" max="100" class="form-control">
-                            </div>
+            <div class="container-fluid my-5 py-5" style="background-color: #f2f2f2">
+                <div class="container py-2">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img :src="'../uploads/Products/' + product.image_pro" alt="" class="img-fluid">
                         </div>
-                        <router-link :to="{ name: 'Producto' }" class="btn btn-secondary">Atras</router-link>
-                        <button type="button" class="btn btn-primary" @click="addProductToCart(addProduct)">Agregar al Carrito</button>
-                    </div>
+                        <!--/.Carousel Wrapper-->
+                        <div class="col-md-6 px-5">
+                            <h1 class="font-weight-bold" style="font-family: 'Playfair Display', serif;">{{product.name_pro}}</h1>
+                            <h2 class="font-weight-bold py-3">$ {{product.price_pro}}</h2>
+                            <div class="form">
+                                <div class="form-group col-md-6">
+                                    <label>Talle</label>
+                                    <select v-model="addProduct.size" id="" class="form-control">
+                                        <option v-for="talle in modalTalle">
+                                            {{ talle }}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Color</label>
+                                    <select v-model="addProduct.color" id="" class="form-control">
+                                        <option v-for="color in modalColor">
+                                            {{ color }}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form group col-md-4">
+                                    <label>Cantidad</label>
+                                    <input type="number" v-model="addProduct.quantity" value="1" min="1" max="100" class="form-control">
+                                </div>
+                            </div>
+                            <router-link :to="{ name: 'Productos' }" class="btn btn-secondary">Atras</router-link>
+                            <button type="button" class="btn btn-primary" @click="addProductToCart(addProduct)">Agregar al Carrito</button>
+                        </div>
 
+                    </div>
                 </div>
             </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="font-weight-bold">Detalles del producto</h2>
+                    <p>Permanezca cómodo y permanezca en la carrera sin importar el clima. El exterior repelente al agua de Bruno Compete Hoodie lo protege de los elementos, mientras que la tecnología avanzada de tela absorbe la humedad para mantenerlo seco.</p>
+                    <p>• Sudadera con capucha negra con cremallera completa.
+                        <br>• Capucha con cordón ajustable.
+                        <br>• Puños / cinturilla acanalados.
+                        <br>• Bolsillo de canguro.
+                        <br>• Lavar / secar a máquina.</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="mt-5">Material de algodón orgánico <br>
+                        Clima para todo clima, fresco, interior, primavera, ventoso<br>
+                        Patrón sólido</p>
+                </div>
 
+            </div>
+        </div>
+        <div class="container my-5 pt-5">
             <!-- Section: Products v.5 -->
             <section class="text-center my-5">
                 <!-- Carousel Wrapper -->
@@ -499,31 +512,23 @@
                 }
             },
         computed: {
-            openModal(){
-                /*this.addProduct.name = product.name_pro;
-                this.addProduct.price = product.price_pro;
-                this.addProduct.img = product.image_pro;*/
-                /*axios.post('http://127.0.0.1:8000/producto/modal-cart',this.product).then(response => {
-                    //this.items = response.data.items;
-                    console.log(response.data);
-                    this.modalColor = response.data.color;
-                    this.modalTalle = response.data.size;
-                    this.modalImg = response.data.images;
-                }).catch(error => {
-                    console.log(error.response)
-                });
-            },*/
+            ...mapGetters([
+                'getProductsInCart',
+                'getPopupCart',
+            ]),
         },
         created(){
                 this.getItems()
-        }
         },
         methods: {
+            ...mapActions([
+                'addProducts',
+                'currentProduct',
+            ]),
             getItems(){
-                let id = this.$route.params.item;
+                //let   = this.$route.params.item;
 
-                return false;
-                axios.post('http://127.0.0.1:8000/producto/modal-cart',id).then(response => {
+                axios.post('http://ecoomerce.test/api/producto/modal-cart',this.product).then(response => {
                     //this.items = response.data.items;
                     console.log(response.data);
                     this.modalColor = response.data.color;
@@ -532,6 +537,13 @@
                 }).catch(error => {
                     console.log(error.response)
                 });
+            },
+            addProductToCart(item) {
+                this.addProduct.name = this.product.name_pro;
+                this.addProduct.price = this.product.price_pro;
+                this.addProduct.img = this.product.image_pro;
+                console.log(item);
+                this.addProducts(item);
             },
         },
 
