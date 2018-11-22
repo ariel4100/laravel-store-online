@@ -8,32 +8,15 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <router-link :to="{ name: 'Inicio' }" class="nav-link">Inicio</router-link>
-                    </li>
-                    <li class="nav-item">
-                        <router-link :to="{ name: 'Productos' }" class="nav-link">Productos</router-link>
-                    </li>
-                    <li class="nav-item">
-                        <router-link :to="{ name: 'Carrito' }" class="nav-link" v-if="hasProduct()">
-                            <i class="fas fa-shopping-cart"></i>
-                            ({{ getProductsInCart.length }})
-                        </router-link>
-                    </li>
-                    <li class="nav-item">
-                        <router-link :to="{ name: 'Contacto' }" class="nav-link">Contacto</router-link>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Iniciar Sesion
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Login</a>
-                            <a class="dropdown-item" href="#">Registrate</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li>
+                    <router-link :to="{ name: 'Inicio' }" class="nav-item nav-link" active-class="active" exact>Inicio</router-link>
+                    <router-link :to="{ name: 'Productos' }" class="nav-item nav-link" active-class="active" exact>Productos</router-link>
+                    <router-link :to="{ name: 'Carrito' }" class="nav-item nav-link" v-if="hasProduct()" active-class="active" exact>
+                        <i class="fas fa-shopping-cart"></i>
+                        ({{ getProductsInCart.length }})
+                    </router-link>
+                    <router-link :to="{ name: 'Contacto' }" class="nav-item nav-link" active-class="active" exact>Contacto</router-link>
+                    <router-link :to="{ name: 'Registro' }" class="nav-item nav-link" active-class="active" exact>Creá tu cuenta</router-link>
+                    <router-link :to="{ name: 'Login' }" class="nav-item nav-link" active-class="active" exact>Ingresá</router-link>
                 </ul>
             </div>
         </div>
@@ -63,3 +46,12 @@
         },
     }
 </script>
+<style>
+    a.router-link-active {
+        color: #f66;
+    }
+    li.router-link-active a {
+        color: #f66;
+    }
+
+</style>

@@ -1,25 +1,31 @@
 <template>
     <div class="container my-4">
         <div class="row">
-            <div class="col-md-6"></div>
-            <div class="col-md-6 p-5" style="background-color: #f2f2f2">
-                <h2 class="h2">Resumen del pedido</h2>
-                <div class="row mt-5" v-for="cart in getProductsInCart">
-                    <div class="col-md-4">
-                        <img :src="'../uploads/Products/' + cart.img" alt="" class="img-fluid">
+            <div class="col-md-6 my-5">
+                <router-view class ="us__content"/>
+            </div>
+            <div class="col-md-6 py-5" style="background-color: #f2f2f2">
+                <h2 class="font-weight-bold">Resumen de Compra</h2>
+                <hr>
+                <div class="row my-3 text-center" v-for="cart in getProductsInCart">
+                    <div class="col-md-3">
+                        <img :src="'../../uploads/Products/' + cart.img" class="img-fluid rounded-circle mb-3" width="150px" height="50px">
+                    </div>
+                    <div class="col-md-5 d-flex text-justify flex-column">
+                        <h5 class=" ">{{ cart.name}}</h5>
+                        <p>
+                            Color: {{ cart.color}} <br>
+                            Talle: {{ cart.size}} <br>
+                            Precio: {{ cart.price}}
+                        </p>
+                        <p class="">Cantidad: {{ cart.quantity}}</p>
                     </div>
                     <div class="col-md-4">
-                        <p class="h5">{{ cart.name}}</p>
-                        <p>Color: {{ cart.color}}</p>
-                        <p>Talle: {{ cart.size}}</p>
-                        <p>Cantidad: {{ cart.quantity}}</p>
-                    </div>
-                    <div class="col-md-4">
-                        <p>${{ cart.price }}</p>
+                        <p>${{ cart.price * cart.quantity }}</p>
                     </div>
                 </div>
-                <hr class="bg-dark">
-                <div class="row px-5 mt-3">
+
+                <!--<div class="row px-5 mt-3">
                     <div class="col-md-6 ">
                         <p>Precio Total </p>
                     </div>
@@ -42,15 +48,16 @@
                     <div class="col-md-6">
                         <p>$</p>
                     </div>
-                </div>
+                </div>--->
                 <div class="row px-5 mt-3">
-                    <div class="col-md-6 ">
+                    <div class="col-md-9 ">
                         <p class="lead">Precio Final </p>
                     </div>
-                    <div class="col-md-6">
-                        <p>$</p>
+                    <div class="col-md-3 text-sm-center">
+                        <p>$ {{ totalPrice()}}</p>
                     </div>
                 </div>
+                <router-link :to="{ name: 'Inicio' }" class="btn btn-success btn-block">Confirmar Pedido</router-link>
             </div>
         </div>
     </div>
@@ -74,7 +81,10 @@
 
         },
         methods: {
-
+            totalPrice() {
+                return this.getProductsInCart.reduce((current, next) =>
+                    current + (next.price * next.quantity), 0);
+            },
             hasProduct() {
                 return this.getProductsInCart.length > 0;
             },

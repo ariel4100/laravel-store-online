@@ -29,7 +29,7 @@
                 </tbody>
             </table>
             <router-link :to="{ name: 'Productos' }" class="btn btn-warning">Seguir Comprando</router-link>
-            <router-link :to="{ name: 'ConfirmarPedido' }" class="btn btn-success">Confirmar Pedido</router-link>
+            <router-link :to="{ name: 'Envio' }" class="btn btn-success">Confirmar Pedido</router-link>
         </div>
     </section>
 </template>
